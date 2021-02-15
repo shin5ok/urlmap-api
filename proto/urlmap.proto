@@ -1,0 +1,24 @@
+syntax = "proto3";
+package urlmap;
+
+service Url {
+  rpc GetRedirect (OrgUrl) returns (RedirectUrl) {}
+}
+message OrgUrl {
+  string orgurl = 1;
+}
+message RedirectUrl {
+    RedirectInfo redirectinfo = 1;
+}
+
+message RedirectInfo {
+    string redirecturl = 1;
+    string comment = 2;
+    string register = 3;
+    bool valid = 4;
+
+    message datetime {
+        string start = 1;
+        string stop = 2;
+    }
+}
