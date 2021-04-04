@@ -11,6 +11,7 @@ import (
 
 func main() {
 	host := flag.String("host", "host", "host you want to connect")
+	mode := flag.String("mode", "mode", "set or get")
 	flag.Parse()
 	conn, err := grpc.Dial(*host, grpc.WithInsecure())
 	if err != nil {
@@ -18,11 +19,26 @@ func main() {
 	}
 	defer conn.Close()
 	client := pb.NewRedirectionClient(conn)
-	orgurl := &pb.OrgUrl{Org: "https://example.com/"}
 
-	if res, err := client.GetInfo(context.TODO(), orgurl); err != nil {
-		log.Printf("error::%#v \n", err)
+	if *mode == "set" {
+		// data := &pb.RedirectData{
+		// 	&pb.RedirectData{"kawanos", "https://example.com/", "https://example.jp/", "my_comment", true},
+		// 	&pb.RedirectData_ValidDate{"2020-01-01", "2020-01-02"},
+		// }
+		data := &pb.RedirectData{}
+
+		if res, err := client.SetInfo(context.TODO(), data); err != nil {
+			log.Printf("error::%#v \n", err)
+		} else {
+			log.Printf("result:%#v \n", res)
+		}
 	} else {
-		log.Printf("result:%#v \n", res)
+		orgurl := &pb.OrgUrl{Org: "https://example.com/"}
+
+		if res, err := client.GetInfo(context.TODO(), orgurl); err != nil {
+			log.Printf("error::%#v \n", err)
+		} else {
+			log.Printf("result:%#v \n", res)
+		}
 	}
 }

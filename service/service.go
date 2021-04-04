@@ -13,7 +13,7 @@ func (s *Redirection) GetInfo(ctx context.Context, org *pb.OrgUrl) (*pb.Redirect
 	if true {
 		return redirectdata, nil
 	}
-	return nil, errors.New("erro")
+	return nil, errors.New("Error")
 }
 
 func (s *Redirection) SetInfo(ctx context.Context, org *pb.RedirectData) (*pb.OrgUrl, error) {
@@ -21,5 +21,5 @@ func (s *Redirection) SetInfo(ctx context.Context, org *pb.RedirectData) (*pb.Or
 	if true {
 		return &pb.OrgUrl{}, nil
 	}
-	return nil, errors.New("erro")
+	return nil, errors.New("Error")
 }
