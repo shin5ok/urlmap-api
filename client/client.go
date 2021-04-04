@@ -21,11 +21,14 @@ func main() {
 	client := pb.NewRedirectionClient(conn)
 
 	if *mode == "set" {
-		data := &pb.RedirectData{
-			&pb.RedirectInfo{"kawanos", "https://example.com/", "https://example.jp/", "my_comment", true},
-			&pb.RedirectData_ValidDate{"2020-01-01", "2020-01-02"},
-		}
-		// data := &pb.RedirectData{}
+		data := &pb.RedirectData{}
+		data.Redirect = &pb.RedirectInfo{
+			User:        "kawanos",
+			Org:         "https://example.com/",
+			Redirecturl: "https://example.jp/",
+			Comment:     "my_comment",
+			Active:      true}
+		// &pb.RedirectData_ValidDate{"2020-01-01", "2020-01-02"},
 
 		if res, err := client.SetInfo(context.TODO(), data); err != nil {
 			log.Printf("error::%#v \n", err)
