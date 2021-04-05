@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"errors"
+	"fmt"
 	pb "urlmap-api/pb"
 )
 
@@ -10,6 +11,9 @@ type Redirection struct{}
 
 func (s *Redirection) GetInfo(ctx context.Context, org *pb.OrgUrl) (*pb.RedirectData, error) {
 	redirectdata := &pb.RedirectData{}
+	redirectdata.Redirect = &pb.RedirectInfo{User: "kawanos", Redirecturl: "https://example.jp/koinu/tachi"}
+	redirectdata.Redirect.Org = "https://example.com/takosuke-0"
+	fmt.Println(redirectdata)
 	if true {
 		return redirectdata, nil
 	}

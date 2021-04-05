@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"flag"
+	"fmt"
 	"log"
 	pb "urlmap-api/pb"
 
@@ -10,8 +11,8 @@ import (
 )
 
 func main() {
-	host := flag.String("host", "host", "host you want to connect")
-	mode := flag.String("mode", "mode", "set or get")
+	host := flag.String("host", "localhost:8080", "host you want to connect")
+	mode := flag.String("mode", "get", "set or get")
 	flag.Parse()
 	conn, err := grpc.Dial(*host, grpc.WithInsecure())
 	if err != nil {
@@ -39,9 +40,9 @@ func main() {
 		orgurl := &pb.OrgUrl{Org: "https://example.com/"}
 
 		if res, err := client.GetInfo(context.TODO(), orgurl); err != nil {
-			log.Printf("error::%#v \n", err)
+			log.Printf("error:%#v \n", err)
 		} else {
-			log.Printf("result:%#v \n", res)
+			fmt.Printf("Redirect.User:%s, Redirect.Org:%s, Redirect.Redirect: %s\n", res.Redirect.User, res.Redirect.Org, res.Redirect.Redirecturl)
 		}
 	}
 }
