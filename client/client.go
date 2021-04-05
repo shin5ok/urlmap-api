@@ -10,8 +10,8 @@ import (
 )
 
 func main() {
-	host := flag.String("host", "host", "host you want to connect")
-	mode := flag.String("mode", "mode", "set or get")
+	host := flag.String("host", "localhost:8080", "host you want to connect")
+	mode := flag.String("mode", "get", "set or get")
 	flag.Parse()
 	conn, err := grpc.Dial(*host, grpc.WithInsecure())
 	if err != nil {
