@@ -12,10 +12,13 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
-var port string = fmt.Sprintf(":%s", os.Getenv("PORT"))
+var port string = os.Getenv("PORT")
 
 func main() {
-	listenPort, err := net.Listen("tcp", port)
+	if port == "" {
+		port = "8080"
+	}
+	listenPort, err := net.Listen("tcp", ":"+port)
 	if err != nil {
 		log.Fatalln(err)
 	}

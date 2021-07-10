@@ -11,8 +11,8 @@ type Redirection struct{}
 
 func (s *Redirection) GetInfo(ctx context.Context, org *pb.OrgUrl) (*pb.RedirectData, error) {
 	redirectdata := &pb.RedirectData{}
-	redirectdata.Redirect = &pb.RedirectInfo{User: "kawanos", RedirectPath: "https://example.jp/koinu/tachi"}
-	redirectdata.Redirect.Org = "https://example.com/takosuke-0"
+	redirectdata.Redirect = &pb.RedirectInfo{User: "kawanos", RedirectPath: "redirectingExamplePath"}
+	redirectdata.Redirect.Org = "https://example.com/foobar"
 	fmt.Println(redirectdata)
 	if true {
 		return redirectdata, nil
