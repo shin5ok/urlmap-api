@@ -1,4 +1,4 @@
-create table IF not exists `redirect`
+create table IF not exists `redirects`
 (
  `user`             VARCHAR(20),
  `redirect_path`	VARCHAR(64),
@@ -6,6 +6,8 @@ create table IF not exists `redirect`
  `host`			VARCHAR(128),
  `comment`		TEXT,
  `active`		int(1) DEFAULT 0,
+ `begin_at`       Datetime DEFAULT NULL,
+ `end_at`       Datetime DEFAULT NULL,
  `created_at`       Datetime DEFAULT NULL,
  `updated_at`       Datetime DEFAULT NULL,
     PRIMARY KEY (`redirect_path`)

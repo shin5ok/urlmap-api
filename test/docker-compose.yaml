@@ -3,7 +3,6 @@ version: '3'
 services:
   testmysql:
     image: mysql:5.7
-    # container_name: mysqldb
     environment:
       MYSQL_ROOT_PASSWORD: himitsukanri
       MYSQL_PASSWORD: himitsu
