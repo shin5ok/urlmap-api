@@ -20,9 +20,10 @@ message RedirectData {
 
 message RedirectInfo {
     string user = 1;
-    string org = 2;
-    string redirectPath = 3;
-    string comment = 4;
-    bool active = 5;
+    string redirectPath = 2;
+    string org = 3;
+    string host = 4;
+    string comment = 5;
+    bool active = 6;
 
 }
