@@ -1,5 +1,4 @@
-// package service
-package main
+package service
 
 import (
 	"fmt"
@@ -23,7 +22,7 @@ func sqlConnect() (database *gorm.DB, err error) {
 	return gorm.Open(DBMS, CONNECT)
 }
 
-type Redirect struct {
+type Redirects struct {
 	User         string `json:user`
 	RedirectPath string `json:redirect_path`
 	Org          string `json:org`
@@ -37,7 +36,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	db.Create(&Redirect{
+	db.Create(&Redirects{
 		User:         "tako",
 		RedirectPath: "shuya",
 		Org:          "https://www.example.tv",
