@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  testmysql:
+    image: mysql:5.7
+    # container_name: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: himitsukanri
+      MYSQL_PASSWORD: himitsu
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: test
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+    - 3306:3306
