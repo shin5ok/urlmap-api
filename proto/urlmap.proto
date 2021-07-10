@@ -21,7 +21,7 @@ message RedirectData {
 message RedirectInfo {
     string user = 1;
     string org = 2;
-    string redirecturl = 3;
+    string redirectPath = 3;
     string comment = 4;
     bool active = 5;
 
