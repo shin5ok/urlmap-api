@@ -2,12 +2,21 @@ syntax = "proto3";
 package urlmap;
 
 service Redirection {
-  rpc GetInfo (OrgUrl) returns (RedirectData);
+  rpc GetOrgByPath (RedirectPath) returns (OrgUrl);
+  rpc GetInfoByUser (User) returns (RedirectData);
   rpc SetInfo (RedirectData) returns (OrgUrl);
+}
+
+message RedirectPath {
+  string path = 1;
 }
 
 message OrgUrl {
   string org = 1;
+}
+
+message User {
+  string user = 1;
 }
 
 message RedirectData {

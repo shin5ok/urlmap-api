@@ -39,12 +39,13 @@ func main() {
 			log.Printf("result:%#v \n", res)
 		}
 	} else {
-		orgurl := &pb.OrgUrl{Org: "https://example.com/"}
+		path := &pb.RedirectPath{Path: "takosuke"}
 
-		if res, err := client.GetInfo(context.TODO(), orgurl); err != nil {
+		if res, err := client.GetOrgByPath(context.TODO(), path); err != nil {
 			log.Printf("error:%#v \n", err)
 		} else {
-			fmt.Printf("Redirect.User:%s, Redirect.Org:%s, Redirect.Redirect: %s\n", res.Redirect.User, res.Redirect.Org, res.Redirect.RedirectPath)
+			// fmt.Printf("Redirect.User:%s, Redirect.Org:%s, Redirect.Redirect: %s\n", res.Redirect.User, res.Redirect.Org, res.Redirect.RedirectPath)
+			fmt.Println(res)
 		}
 	}
 }

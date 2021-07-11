@@ -24,6 +24,53 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type RedirectPath struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Path string `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+}
+
+func (x *RedirectPath) Reset() {
+	*x = RedirectPath{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_urlmap_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RedirectPath) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RedirectPath) ProtoMessage() {}
+
+func (x *RedirectPath) ProtoReflect() protoreflect.Message {
+	mi := &file_urlmap_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RedirectPath.ProtoReflect.Descriptor instead.
+func (*RedirectPath) Descriptor() ([]byte, []int) {
+	return file_urlmap_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *RedirectPath) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
 type OrgUrl struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -35,7 +82,7 @@ type OrgUrl struct {
 func (x *OrgUrl) Reset() {
 	*x = OrgUrl{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_urlmap_proto_msgTypes[0]
+		mi := &file_urlmap_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -48,7 +95,7 @@ func (x *OrgUrl) String() string {
 func (*OrgUrl) ProtoMessage() {}
 
 func (x *OrgUrl) ProtoReflect() protoreflect.Message {
-	mi := &file_urlmap_proto_msgTypes[0]
+	mi := &file_urlmap_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,12 +108,59 @@ func (x *OrgUrl) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrgUrl.ProtoReflect.Descriptor instead.
 func (*OrgUrl) Descriptor() ([]byte, []int) {
-	return file_urlmap_proto_rawDescGZIP(), []int{0}
+	return file_urlmap_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *OrgUrl) GetOrg() string {
 	if x != nil {
 		return x.Org
+	}
+	return ""
+}
+
+type User struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User string `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+}
+
+func (x *User) Reset() {
+	*x = User{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_urlmap_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *User) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*User) ProtoMessage() {}
+
+func (x *User) ProtoReflect() protoreflect.Message {
+	mi := &file_urlmap_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use User.ProtoReflect.Descriptor instead.
+func (*User) Descriptor() ([]byte, []int) {
+	return file_urlmap_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *User) GetUser() string {
+	if x != nil {
+		return x.User
 	}
 	return ""
 }
@@ -82,7 +176,7 @@ type RedirectData struct {
 func (x *RedirectData) Reset() {
 	*x = RedirectData{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_urlmap_proto_msgTypes[1]
+		mi := &file_urlmap_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -95,7 +189,7 @@ func (x *RedirectData) String() string {
 func (*RedirectData) ProtoMessage() {}
 
 func (x *RedirectData) ProtoReflect() protoreflect.Message {
-	mi := &file_urlmap_proto_msgTypes[1]
+	mi := &file_urlmap_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,7 +202,7 @@ func (x *RedirectData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RedirectData.ProtoReflect.Descriptor instead.
 func (*RedirectData) Descriptor() ([]byte, []int) {
-	return file_urlmap_proto_rawDescGZIP(), []int{1}
+	return file_urlmap_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *RedirectData) GetRedirect() *RedirectInfo {
@@ -134,7 +228,7 @@ type RedirectInfo struct {
 func (x *RedirectInfo) Reset() {
 	*x = RedirectInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_urlmap_proto_msgTypes[2]
+		mi := &file_urlmap_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -147,7 +241,7 @@ func (x *RedirectInfo) String() string {
 func (*RedirectInfo) ProtoMessage() {}
 
 func (x *RedirectInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_urlmap_proto_msgTypes[2]
+	mi := &file_urlmap_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -160,7 +254,7 @@ func (x *RedirectInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RedirectInfo.ProtoReflect.Descriptor instead.
 func (*RedirectInfo) Descriptor() ([]byte, []int) {
-	return file_urlmap_proto_rawDescGZIP(), []int{2}
+	return file_urlmap_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *RedirectInfo) GetUser() string {
@@ -217,7 +311,7 @@ type RedirectData_ValidDate struct {
 func (x *RedirectData_ValidDate) Reset() {
 	*x = RedirectData_ValidDate{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_urlmap_proto_msgTypes[3]
+		mi := &file_urlmap_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -230,7 +324,7 @@ func (x *RedirectData_ValidDate) String() string {
 func (*RedirectData_ValidDate) ProtoMessage() {}
 
 func (x *RedirectData_ValidDate) ProtoReflect() protoreflect.Message {
-	mi := &file_urlmap_proto_msgTypes[3]
+	mi := &file_urlmap_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -243,7 +337,7 @@ func (x *RedirectData_ValidDate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RedirectData_ValidDate.ProtoReflect.Descriptor instead.
 func (*RedirectData_ValidDate) Descriptor() ([]byte, []int) {
-	return file_urlmap_proto_rawDescGZIP(), []int{1, 0}
+	return file_urlmap_proto_rawDescGZIP(), []int{3, 0}
 }
 
 func (x *RedirectData_ValidDate) GetBegin() string {
@@ -264,9 +358,13 @@ var File_urlmap_proto protoreflect.FileDescriptor
 
 var file_urlmap_proto_rawDesc = []byte{
 	0x0a, 0x0c, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x06,
-	0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x22, 0x1a, 0x0a, 0x06, 0x4f, 0x72, 0x67, 0x55, 0x72, 0x6c,
-	0x12, 0x10, 0x0a, 0x03, 0x6f, 0x72, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6f,
-	0x72, 0x67, 0x22, 0x75, 0x0a, 0x0c, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x44, 0x61,
+	0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x22, 0x22, 0x0a, 0x0c, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65,
+	0x63, 0x74, 0x50, 0x61, 0x74, 0x68, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x74, 0x68, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x22, 0x1a, 0x0a, 0x06, 0x4f, 0x72,
+	0x67, 0x55, 0x72, 0x6c, 0x12, 0x10, 0x0a, 0x03, 0x6f, 0x72, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x03, 0x6f, 0x72, 0x67, 0x22, 0x1a, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x12,
+	0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x75, 0x73,
+	0x65, 0x72, 0x22, 0x75, 0x0a, 0x0c, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x44, 0x61,
 	0x74, 0x61, 0x12, 0x30, 0x0a, 0x08, 0x72, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x52, 0x65,
 	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x08, 0x72, 0x65, 0x64, 0x69,
@@ -283,15 +381,18 @@ var file_urlmap_proto_rawDesc = []byte{
 	0x28, 0x09, 0x52, 0x04, 0x68, 0x6f, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6d, 0x6d,
 	0x65, 0x6e, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6d, 0x6d, 0x65,
 	0x6e, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x18, 0x06, 0x20, 0x01,
-	0x28, 0x08, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x32, 0x6f, 0x0a, 0x0b, 0x52, 0x65,
-	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2f, 0x0a, 0x07, 0x47, 0x65, 0x74,
-	0x49, 0x6e, 0x66, 0x6f, 0x12, 0x0e, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x4f, 0x72,
-	0x67, 0x55, 0x72, 0x6c, 0x1a, 0x14, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x52, 0x65,
-	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x2f, 0x0a, 0x07, 0x53, 0x65,
-	0x74, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x14, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x52,
-	0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x44, 0x61, 0x74, 0x61, 0x1a, 0x0e, 0x2e, 0x75, 0x72,
-	0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x4f, 0x72, 0x67, 0x55, 0x72, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x28, 0x08, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x32, 0xa9, 0x01, 0x0a, 0x0b, 0x52,
+	0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x34, 0x0a, 0x0c, 0x47, 0x65,
+	0x74, 0x4f, 0x72, 0x67, 0x42, 0x79, 0x50, 0x61, 0x74, 0x68, 0x12, 0x14, 0x2e, 0x75, 0x72, 0x6c,
+	0x6d, 0x61, 0x70, 0x2e, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x50, 0x61, 0x74, 0x68,
+	0x1a, 0x0e, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x4f, 0x72, 0x67, 0x55, 0x72, 0x6c,
+	0x12, 0x33, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x42, 0x79, 0x55, 0x73, 0x65,
+	0x72, 0x12, 0x0c, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x1a,
+	0x14, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63,
+	0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x2f, 0x0a, 0x07, 0x53, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f,
+	0x12, 0x14, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65,
+	0x63, 0x74, 0x44, 0x61, 0x74, 0x61, 0x1a, 0x0e, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e,
+	0x4f, 0x72, 0x67, 0x55, 0x72, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -306,21 +407,25 @@ func file_urlmap_proto_rawDescGZIP() []byte {
 	return file_urlmap_proto_rawDescData
 }
 
-var file_urlmap_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_urlmap_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_urlmap_proto_goTypes = []interface{}{
-	(*OrgUrl)(nil),                 // 0: urlmap.OrgUrl
-	(*RedirectData)(nil),           // 1: urlmap.RedirectData
-	(*RedirectInfo)(nil),           // 2: urlmap.RedirectInfo
-	(*RedirectData_ValidDate)(nil), // 3: urlmap.RedirectData.ValidDate
+	(*RedirectPath)(nil),           // 0: urlmap.RedirectPath
+	(*OrgUrl)(nil),                 // 1: urlmap.OrgUrl
+	(*User)(nil),                   // 2: urlmap.User
+	(*RedirectData)(nil),           // 3: urlmap.RedirectData
+	(*RedirectInfo)(nil),           // 4: urlmap.RedirectInfo
+	(*RedirectData_ValidDate)(nil), // 5: urlmap.RedirectData.ValidDate
 }
 var file_urlmap_proto_depIdxs = []int32{
-	2, // 0: urlmap.RedirectData.redirect:type_name -> urlmap.RedirectInfo
-	0, // 1: urlmap.Redirection.GetInfo:input_type -> urlmap.OrgUrl
-	1, // 2: urlmap.Redirection.SetInfo:input_type -> urlmap.RedirectData
-	1, // 3: urlmap.Redirection.GetInfo:output_type -> urlmap.RedirectData
-	0, // 4: urlmap.Redirection.SetInfo:output_type -> urlmap.OrgUrl
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
+	4, // 0: urlmap.RedirectData.redirect:type_name -> urlmap.RedirectInfo
+	0, // 1: urlmap.Redirection.GetOrgByPath:input_type -> urlmap.RedirectPath
+	2, // 2: urlmap.Redirection.GetInfoByUser:input_type -> urlmap.User
+	3, // 3: urlmap.Redirection.SetInfo:input_type -> urlmap.RedirectData
+	1, // 4: urlmap.Redirection.GetOrgByPath:output_type -> urlmap.OrgUrl
+	3, // 5: urlmap.Redirection.GetInfoByUser:output_type -> urlmap.RedirectData
+	1, // 6: urlmap.Redirection.SetInfo:output_type -> urlmap.OrgUrl
+	4, // [4:7] is the sub-list for method output_type
+	1, // [1:4] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -333,7 +438,7 @@ func file_urlmap_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_urlmap_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OrgUrl); i {
+			switch v := v.(*RedirectPath); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -345,7 +450,7 @@ func file_urlmap_proto_init() {
 			}
 		}
 		file_urlmap_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RedirectData); i {
+			switch v := v.(*OrgUrl); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -357,7 +462,7 @@ func file_urlmap_proto_init() {
 			}
 		}
 		file_urlmap_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RedirectInfo); i {
+			switch v := v.(*User); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -369,6 +474,30 @@ func file_urlmap_proto_init() {
 			}
 		}
 		file_urlmap_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RedirectData); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_urlmap_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RedirectInfo); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_urlmap_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RedirectData_ValidDate); i {
 			case 0:
 				return &v.state
@@ -387,7 +516,7 @@ func file_urlmap_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_urlmap_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -413,7 +542,8 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type RedirectionClient interface {
-	GetInfo(ctx context.Context, in *OrgUrl, opts ...grpc.CallOption) (*RedirectData, error)
+	GetOrgByPath(ctx context.Context, in *RedirectPath, opts ...grpc.CallOption) (*OrgUrl, error)
+	GetInfoByUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*RedirectData, error)
 	SetInfo(ctx context.Context, in *RedirectData, opts ...grpc.CallOption) (*OrgUrl, error)
 }
 
@@ -425,9 +555,18 @@ func NewRedirectionClient(cc grpc.ClientConnInterface) RedirectionClient {
 	return &redirectionClient{cc}
 }
 
-func (c *redirectionClient) GetInfo(ctx context.Context, in *OrgUrl, opts ...grpc.CallOption) (*RedirectData, error) {
+func (c *redirectionClient) GetOrgByPath(ctx context.Context, in *RedirectPath, opts ...grpc.CallOption) (*OrgUrl, error) {
+	out := new(OrgUrl)
+	err := c.cc.Invoke(ctx, "/urlmap.Redirection/GetOrgByPath", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *redirectionClient) GetInfoByUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*RedirectData, error) {
 	out := new(RedirectData)
-	err := c.cc.Invoke(ctx, "/urlmap.Redirection/GetInfo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/urlmap.Redirection/GetInfoByUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -445,7 +584,8 @@ func (c *redirectionClient) SetInfo(ctx context.Context, in *RedirectData, opts 
 
 // RedirectionServer is the server API for Redirection service.
 type RedirectionServer interface {
-	GetInfo(context.Context, *OrgUrl) (*RedirectData, error)
+	GetOrgByPath(context.Context, *RedirectPath) (*OrgUrl, error)
+	GetInfoByUser(context.Context, *User) (*RedirectData, error)
 	SetInfo(context.Context, *RedirectData) (*OrgUrl, error)
 }
 
@@ -453,8 +593,11 @@ type RedirectionServer interface {
 type UnimplementedRedirectionServer struct {
 }
 
-func (*UnimplementedRedirectionServer) GetInfo(context.Context, *OrgUrl) (*RedirectData, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetInfo not implemented")
+func (*UnimplementedRedirectionServer) GetOrgByPath(context.Context, *RedirectPath) (*OrgUrl, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrgByPath not implemented")
+}
+func (*UnimplementedRedirectionServer) GetInfoByUser(context.Context, *User) (*RedirectData, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInfoByUser not implemented")
 }
 func (*UnimplementedRedirectionServer) SetInfo(context.Context, *RedirectData) (*OrgUrl, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetInfo not implemented")
@@ -464,20 +607,38 @@ func RegisterRedirectionServer(s *grpc.Server, srv RedirectionServer) {
 	s.RegisterService(&_Redirection_serviceDesc, srv)
 }
 
-func _Redirection_GetInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OrgUrl)
+func _Redirection_GetOrgByPath_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RedirectPath)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RedirectionServer).GetInfo(ctx, in)
+		return srv.(RedirectionServer).GetOrgByPath(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/urlmap.Redirection/GetInfo",
+		FullMethod: "/urlmap.Redirection/GetOrgByPath",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedirectionServer).GetInfo(ctx, req.(*OrgUrl))
+		return srv.(RedirectionServer).GetOrgByPath(ctx, req.(*RedirectPath))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Redirection_GetInfoByUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(User)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedirectionServer).GetInfoByUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/urlmap.Redirection/GetInfoByUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedirectionServer).GetInfoByUser(ctx, req.(*User))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -505,8 +666,12 @@ var _Redirection_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*RedirectionServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetInfo",
-			Handler:    _Redirection_GetInfo_Handler,
+			MethodName: "GetOrgByPath",
+			Handler:    _Redirection_GetOrgByPath_Handler,
+		},
+		{
+			MethodName: "GetInfoByUser",
+			Handler:    _Redirection_GetInfoByUser_Handler,
 		},
 		{
 			MethodName: "SetInfo",
