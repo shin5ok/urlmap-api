@@ -83,6 +83,7 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 	redirect.RedirectPath = r.Redirect.RedirectPath
 	redirect.User = r.Redirect.User
 	redirect.Org = r.Redirect.Org
+	redirect.Comment = r.Redirect.Comment
 	redirect.Active = 1
 	status := db.Create(&redirect)
 	if status.Error != nil {
