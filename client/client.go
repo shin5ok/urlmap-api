@@ -13,6 +13,7 @@ import (
 
 func main() {
 	host := flag.String("host", "localhost:8080", "host you want to connect")
+	path := flag.String("path", "", "redirect path")
 	mode := flag.String("mode", "get", "set or get")
 	flag.Parse()
 	conn, err := grpc.Dial(*host, grpc.WithInsecure())
@@ -40,7 +41,7 @@ func main() {
 			log.Printf("result:%#v \n", res)
 		}
 	} else {
-		path := &pb.RedirectPath{Path: "takosuke"}
+		path := &pb.RedirectPath{Path: *path}
 
 		if res, err := client.GetOrgByPath(context.TODO(), path); err != nil {
 			log.Printf("error:%#v \n", err)
