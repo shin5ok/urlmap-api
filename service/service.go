@@ -35,6 +35,7 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 	redirect.Active = 1
 	result := db.Create(&redirect)
 	if result.Error != nil {
+		log.Println(result.Error)
 		return &pb.OrgUrl{}, result.Error
 	}
 	org := &pb.OrgUrl{Org: r.Redirect.Org}
