@@ -7,6 +7,7 @@ import (
 	"log"
 	pb "urlmap-api/pb"
 
+	"github.com/google/uuid"
 	"google.golang.org/grpc"
 )
 
@@ -23,10 +24,11 @@ func main() {
 
 	if *mode == "set" {
 		data := &pb.RedirectData{}
+		randPath := uuid.New().String()
 		data.Redirect = &pb.RedirectInfo{
 			User:         "kawanos",
 			Org:          "https://example.com/",
-			RedirectPath: "takosuke",
+			RedirectPath: randPath,
 			Comment:      "my_comment",
 			Active:       true}
 		// &pb.RedirectData_ValidDate{"2020-01-01", "2020-01-02"},
