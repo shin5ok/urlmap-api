@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log"
 	pb "urlmap-api/pb"
 )
 
@@ -20,10 +21,23 @@ func (s *Redirection) GetInfo(ctx context.Context, org *pb.OrgUrl) (*pb.Redirect
 	return nil, errors.New("Error")
 }
 
-func (s *Redirection) SetInfo(ctx context.Context, org *pb.RedirectData) (*pb.OrgUrl, error) {
+func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgUrl, error) {
 	// just stub for a test
-	if true {
-		return &pb.OrgUrl{}, nil
+	db, err := sqlConnect()
+	if err != nil {
+		// return &pb.OrgUrl{}, nil
+		log.Fatal(err)
 	}
-	return nil, errors.New("Error")
+	redirect := Redirects{}
+	redirect.RedirectPath = r.Redirect.RedirectPath
+	redirect.User = r.Redirect.User
+	redirect.Org = r.Redirect.Org
+	redirect.Active = 1
+	result := db.Create(&redirect)
+	if result.Error != nil {
+		return &pb.OrgUrl{}, result.Error
+	}
+	// pb.OrgUrl = redirect.Org
+	org := &pb.OrgUrl{Org: r.Redirect.Org}
+	return org, nil
 }

@@ -26,7 +26,7 @@ func main() {
 		data.Redirect = &pb.RedirectInfo{
 			User:         "kawanos",
 			Org:          "https://example.com/",
-			RedirectPath: "/foo",
+			RedirectPath: "takosuke",
 			Comment:      "my_comment",
 			Active:       true}
 		// &pb.RedirectData_ValidDate{"2020-01-01", "2020-01-02"},
