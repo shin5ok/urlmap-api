@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"strings"
 	pb "urlmap-api/pb"
 
 	"github.com/google/uuid"
@@ -25,10 +26,10 @@ func main() {
 
 	if *mode == "set" {
 		data := &pb.RedirectData{}
-		randPath := uuid.New().String()
+		randPath := strings.Split(uuid.New().String(), "-")[0]
 		data.Redirect = &pb.RedirectInfo{
 			User:         "kawanos",
-			Org:          "https://example.com/",
+			Org:          "https://example.com/" + randPath,
 			RedirectPath: randPath,
 			Comment:      "my_comment",
 			Active:       true}

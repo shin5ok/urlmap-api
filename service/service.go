@@ -15,8 +15,10 @@ var dbConn *gorm.DB
 func init() {}
 func makeConn() *gorm.DB {
 	if dbConn != nil {
+		log.Println("using a stored connection")
 		return dbConn
 	}
+	log.Println("init db connection")
 	db, err := sqlConnect()
 	if err != nil {
 		log.Fatal(err)
@@ -52,11 +54,7 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 
 func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgUrl, error) {
 	// just stub for a test
-	db, err := sqlConnect()
-	if err != nil {
-		// return &pb.OrgUrl{}, nil
-		log.Fatal(err)
-	}
+	db := makeConn()
 	redirect := Redirects{}
 	redirect.RedirectPath = r.Redirect.RedirectPath
 	redirect.User = r.Redirect.User
