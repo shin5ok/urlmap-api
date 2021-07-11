@@ -48,8 +48,8 @@ func main() {
 		if res, err := client.GetInfoByUser(context.TODO(), u); err != nil {
 			log.Printf("error:%#v \n", err)
 		} else {
-			// format specifid "%+v" to dump
-			fmt.Printf("%+v\n", res.Redirect)
+			// format specified "%+v" to dump
+			fmt.Printf("%+v\n", res)
 		}
 
 	} else {

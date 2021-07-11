@@ -27,34 +27,46 @@ func makeConn() *gorm.DB {
 	return db
 }
 
-func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.RedirectData, error) {
+func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.ArrayRedirectData, error) {
 	u := user.User
 	db := makeConn()
 
+	pbResults := &pb.ArrayRedirectData{}
+	resultSlice := []*pb.RedirectData{}
 	type Redirects struct {
-		Org     string
-		User    string
-		Active  int
-		Host    string
-		Comment string
+		Org          string
+		User         string
+		Host         string
+		Comment      string
+		RedirectPath string
 	}
-	var result Redirects
+	var results []Redirects
 	// Field name in where args should be actual column name, not struct field
-	status := db.Where("user = ?", u).First(&result)
+	status := db.Where("user = ?", u).Find(&results)
 	if status.Error != nil {
 		log.Println(status.Error)
-		return &pb.RedirectData{}, status.Error
+		return &pb.ArrayRedirectData{}, status.Error
 	}
-	log.Println(result)
-	return &pb.RedirectData{
+
+	resultSlice = append(resultSlice, &pb.RedirectData{
 		Redirect: &pb.RedirectInfo{
-			User:    result.User,
-			Org:     result.Org,
-			Host:    result.Host,
-			Comment: result.Comment,
-			Active:  int32(result.Active),
+			User: results[0].User,
+			Org:  results[0].Org,
+			// Active:       int32(results[0].Active),
+			RedirectPath: results[0].RedirectPath,
 		},
-	}, nil
+	})
+	resultSlice = append(resultSlice, &pb.RedirectData{
+		Redirect: &pb.RedirectInfo{
+			User: results[1].User,
+			Org:  results[1].Org,
+			// Active:       int32(results[0].Active),
+			RedirectPath: results[1].RedirectPath,
+		},
+	})
+	pbResults.Redirects = resultSlice
+	log.Print(pbResults)
+	return pbResults, nil
 }
 
 func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (*pb.OrgUrl, error) {
