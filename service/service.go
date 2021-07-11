@@ -37,7 +37,6 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 	if result.Error != nil {
 		return &pb.OrgUrl{}, result.Error
 	}
-	// pb.OrgUrl = redirect.Org
 	org := &pb.OrgUrl{Org: r.Redirect.Org}
 	return org, nil
 }
