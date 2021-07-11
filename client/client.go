@@ -16,6 +16,7 @@ func main() {
 	host := flag.String("host", "localhost:8080", "host you want to connect")
 	path := flag.String("path", "", "redirect path")
 	mode := flag.String("mode", "get", "set or get")
+	user := flag.String("user", "", "info data")
 	flag.Parse()
 	conn, err := grpc.Dial(*host, grpc.WithInsecure())
 	if err != nil {
@@ -32,7 +33,7 @@ func main() {
 			Org:          "https://example.com/" + randPath,
 			RedirectPath: randPath,
 			Comment:      "my_comment",
-			Active:       true}
+			Active:       1}
 		// &pb.RedirectData_ValidDate{"2020-01-01", "2020-01-02"},
 
 		if res, err := client.SetInfo(context.TODO(), data); err != nil {
@@ -41,6 +42,16 @@ func main() {
 			log.Printf(randPath)
 			log.Printf("result:%#v \n", res)
 		}
+	} else if *mode == "info" {
+		u := &pb.User{User: *user}
+
+		if res, err := client.GetInfoByUser(context.TODO(), u); err != nil {
+			log.Printf("error:%#v \n", err)
+		} else {
+			// format specifid "%+v" to dump
+			fmt.Printf("%+v\n", res.Redirect)
+		}
+
 	} else {
 		path := &pb.RedirectPath{Path: *path}
 
