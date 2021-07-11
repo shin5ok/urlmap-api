@@ -33,6 +33,6 @@ message RedirectInfo {
     string org = 3;
     string host = 4;
     string comment = 5;
-    bool active = 6;
+    int32 active = 6;
 
 }

@@ -27,9 +27,34 @@ func makeConn() *gorm.DB {
 	return db
 }
 
-func (s *Redirection) GetInfoByUser(ctx context.Context, path *pb.User) (*pb.RedirectData, error) {
-	// still a 'Stub'
-	return &pb.RedirectData{}, nil
+func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.RedirectData, error) {
+	u := user.User
+	db := makeConn()
+
+	type Redirects struct {
+		Org     string
+		User    string
+		Active  int
+		Host    string
+		Comment string
+	}
+	var result Redirects
+	// Field name in where args should be actual column name, not struct field
+	status := db.Where("user = ?", u).First(&result)
+	if status.Error != nil {
+		log.Println(status.Error)
+		return &pb.RedirectData{}, status.Error
+	}
+	log.Println(result)
+	return &pb.RedirectData{
+		Redirect: &pb.RedirectInfo{
+			User:    result.User,
+			Org:     result.Org,
+			Host:    result.Host,
+			Comment: result.Comment,
+			Active:  int32(result.Active),
+		},
+	}, nil
 }
 
 func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (*pb.OrgUrl, error) {
@@ -40,11 +65,11 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 		Org string
 	}
 	var result Redirects
-	// status := db.Where("org = ?", p)
+	// Field name in where args should be actual column name, not struct field
 	status := db.Where("redirect_path = ?", p).First(&result)
 	if status.Error != nil {
 		log.Println(status.Error)
-		return &pb.OrgUrl{}, nil
+		return &pb.OrgUrl{}, status.Error
 	}
 	log.Println(result)
 
@@ -53,7 +78,6 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 }
 
 func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgUrl, error) {
-	// just stub for a test
 	db := makeConn()
 	redirect := Redirects{}
 	redirect.RedirectPath = r.Redirect.RedirectPath
