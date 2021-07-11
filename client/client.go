@@ -36,6 +36,7 @@ func main() {
 		if res, err := client.SetInfo(context.TODO(), data); err != nil {
 			log.Printf("error::%#v \n", err)
 		} else {
+			log.Printf(randPath)
 			log.Printf("result:%#v \n", res)
 		}
 	} else {
