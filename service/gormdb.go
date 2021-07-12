@@ -3,7 +3,6 @@ package service
 import (
 	"fmt"
 	"log"
-	"math/rand"
 	"os"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -51,16 +50,4 @@ func main() {
 		fmt.Printf("%d: %s, %s, %s, %d\n", i, r.User, r.RedirectPath, r.Org, r.Active)
 
 	}
-}
-
-func genRand(i int) string {
-	src := []rune("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
-
-	x := make([]rune, i)
-	for n := range x {
-		x[n] = src[rand.Intn(len(src))]
-	}
-	rand := string(x)
-	fmt.Println(rand)
-	return rand
 }
