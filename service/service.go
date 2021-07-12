@@ -39,6 +39,7 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 		Host         string
 		Comment      string
 		RedirectPath string
+		Active       int32
 	}
 	var results []Redirects
 	// Field name in where args should be actual column name, not struct field
@@ -53,22 +54,19 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 		return &pb.ArrayRedirectData{}, status.Error
 	}
 
-	resultSlice = append(resultSlice, &pb.RedirectData{
-		Redirect: &pb.RedirectInfo{
-			User: results[0].User,
-			Org:  results[0].Org,
-			// Active:       int32(results[0].Active),
-			RedirectPath: results[0].RedirectPath,
-		},
-	})
-	resultSlice = append(resultSlice, &pb.RedirectData{
-		Redirect: &pb.RedirectInfo{
-			User: results[1].User,
-			Org:  results[1].Org,
-			// Active:       int32(results[0].Active),
-			RedirectPath: results[1].RedirectPath,
-		},
-	})
+	for _, v := range results {
+
+		resultSlice = append(resultSlice, &pb.RedirectData{
+			Redirect: &pb.RedirectInfo{
+				User:         v.User,
+				Org:          v.Org,
+				Comment:      v.Comment,
+				Active:       int32(v.Active),
+				RedirectPath: v.RedirectPath,
+			},
+		})
+	}
+
 	pbResults.Redirects = resultSlice
 	log.Print(pbResults)
 	return pbResults, nil
