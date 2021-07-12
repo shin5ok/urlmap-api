@@ -48,6 +48,11 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 		return &pb.ArrayRedirectData{}, status.Error
 	}
 
+	if status.RowsAffected == 0 {
+		log.Println("0 rows returned")
+		return &pb.ArrayRedirectData{}, status.Error
+	}
+
 	resultSlice = append(resultSlice, &pb.RedirectData{
 		Redirect: &pb.RedirectInfo{
 			User: results[0].User,
