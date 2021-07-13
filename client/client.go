@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -49,7 +50,9 @@ func main() {
 			log.Printf("error:%#v \n", err)
 		} else {
 			// format specified "%+v" to dump
-			fmt.Printf("%+v\n", res)
+			// fmt.Printf("%+v\n", res)
+			j, _ := json.Marshal(res)
+			fmt.Println(string(j))
 		}
 
 	} else {
