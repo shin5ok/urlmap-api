@@ -8,6 +8,8 @@ import (
 	pb "urlmap-api/pb"
 	"urlmap-api/service"
 
+	_ "time/tzdata"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
