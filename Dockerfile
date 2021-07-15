@@ -5,7 +5,9 @@ WORKDIR ${ROOT}
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY . .
+COPY service/ ./service/
+COPY pb/ ./pb/
+COPY main.go ./
 RUN CGO_ENABLED=0 GOOS=linux go build -o /go/bin/main
 
 FROM scratch as main
