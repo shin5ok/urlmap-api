@@ -13,7 +13,7 @@ services:
     ports:
     - 3306:3306
   main:
-    image: urlmap-api:latest
+    build: ../
     environment: 
       DBUSER: test
       DBNAME: testdb
