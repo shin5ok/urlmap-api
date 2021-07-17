@@ -13,7 +13,7 @@ services:
     ports:
     - 3306:3306
   main:
-    image: urlmap-api:latest
+    build: ../
     environment: 
       DBUSER: ${MYSQL_USER}
       DBNAME: ${MYSQL_DATABASE}
