@@ -4,9 +4,9 @@ services:
   testmysql:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: himitsukanri
-      MYSQL_PASSWORD: himitsu
-      MYSQL_DATABASE: testdb
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: test
       TZ: 'Asia/Tokyo'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
@@ -15,9 +15,9 @@ services:
   main:
     image: urlmap-api:latest
     environment: 
-      DBUSER: test
-      DBNAME: testdb
-      DBPASSWORD: himitsu
+      DBUSER: ${MYSQL_USER}
+      DBNAME: ${MYSQL_DATABASE}
+      DBPASSWORD: ${MYSQL_PASSWORD}
       DBHOST: testmysql
       PORT: 8080
     ports:
