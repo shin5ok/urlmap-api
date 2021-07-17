@@ -30,6 +30,7 @@ type Redirects struct {
 	Active       int    `json:active`
 }
 
+/* for test */
 func main() {
 	db, err := sqlConnect()
 	if err != nil {
