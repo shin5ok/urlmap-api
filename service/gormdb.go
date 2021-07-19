@@ -9,13 +9,16 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+var (
+	DBMS     = "mysql"
+	DBUSER   = os.Getenv("DBUSER")
+	DBPASS   = os.Getenv("DBPASSWORD")
+	DBNAME   = os.Getenv("DBNAME")
+	HOST     = os.Getenv("DBHOST")
+	PROTOCOL = fmt.Sprintf("tcp(%s:3306)", HOST)
+)
+
 func sqlConnect() (database *gorm.DB, err error) {
-	DBMS := "mysql"
-	DBUSER := os.Getenv("DBUSER")
-	DBPASS := os.Getenv("DBPASSWORD")
-	DBNAME := os.Getenv("DBNAME")
-	HOST := os.Getenv("DBHOST")
-	PROTOCOL := fmt.Sprintf("tcp(%s:3306)", HOST)
 
 	CONNECT := DBUSER + ":" + DBPASS + "@" + PROTOCOL + "/" + DBNAME + "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
 	return gorm.Open(DBMS, CONNECT)
