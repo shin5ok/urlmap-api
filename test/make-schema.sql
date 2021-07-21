@@ -10,5 +10,6 @@ create table IF not exists `redirects`
  `end_at`       Datetime DEFAULT NULL,
  `created_at`       Datetime DEFAULT NULL,
  `updated_at`       Datetime DEFAULT NULL,
+ `deleted_at`       Datetime DEFAULT NULL,
     PRIMARY KEY (`redirect_path`)
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
