@@ -26,12 +26,12 @@ func sqlConnect() (database *gorm.DB, err error) {
 
 type Redirects struct {
 	gorm.Model
-	User         string `json:user`
-	RedirectPath string `json:redirect_path`
-	Org          string `json:org`
-	Host         string `json:host`
-	Comment      string `json:comment`
-	Active       int    `json:active`
+	User         string
+	RedirectPath string
+	Org          string
+	Host         string
+	Comment      string
+	Active       int
 }
 
 /* for test */
