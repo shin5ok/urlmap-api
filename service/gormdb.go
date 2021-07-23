@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -32,4 +33,27 @@ type Redirects struct {
 	Host         string
 	Comment      string
 	Active       int
+}
+
+/* for test */
+func main() {
+	db, err := sqlConnect()
+	if err != nil {
+		log.Fatal(err)
+	}
+	db.Create(&Redirects{
+		User:         "tako",
+		RedirectPath: "ika",
+		Org:          "https://www.example.tv",
+		Active:       1,
+	})
+	results := []*Redirects{}
+	error := db.Find(&results).Error
+	if error != nil || len(results) == 0 {
+		return
+	}
+	for i, r := range results {
+		fmt.Printf("%d: %s, %s, %s, %d\n", i, r.User, r.RedirectPath, r.Org, r.Active)
+
+	}
 }
