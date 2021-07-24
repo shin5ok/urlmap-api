@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
@@ -33,6 +34,8 @@ type Redirects struct {
 	Host         string
 	Comment      string
 	Active       int
+	BeginAt      time.Time
+	EndAt        time.Time
 }
 
 /* for test */
