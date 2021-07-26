@@ -33,7 +33,7 @@ func main() {
 			User:         "kawanos",
 			Org:          "https://example.com/" + randPath,
 			RedirectPath: randPath,
-			Comment:      "my_comment",
+			Comment:      "This is a sample comment",
 			Active:       1}
 		// &pb.RedirectData_ValidDate{"2020-01-01", "2020-01-02"},
 
