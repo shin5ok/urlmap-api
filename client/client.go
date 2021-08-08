@@ -18,6 +18,7 @@ func main() {
 	path := flag.String("path", "", "redirect path")
 	mode := flag.String("mode", "get", "set or get")
 	user := flag.String("user", "", "info data")
+	org := flag.String("org", "", "org url")
 	flag.Parse()
 	conn, err := grpc.Dial(*host, grpc.WithInsecure())
 	if err != nil {
@@ -28,11 +29,15 @@ func main() {
 
 	if *mode == "set" {
 		data := &pb.RedirectData{}
-		randPath := strings.Split(uuid.New().String(), "-")[0]
+		if *path == "" {
+			randPath := strings.Split(uuid.New().String(), "-")[0]
+			*path = randPath
+		}
+		// randPath := strings.Split(uuid.New().String(), "-")[0]
 		data.Redirect = &pb.RedirectInfo{
 			User:         "kawanos",
-			Org:          "https://example.com/" + randPath,
-			RedirectPath: randPath,
+			Org:          *org,
+			RedirectPath: *path,
 			Comment:      "This is a sample comment",
 			Active:       1}
 		// &pb.RedirectData_ValidDate{"2020-01-01", "2020-01-02"},
@@ -40,7 +45,7 @@ func main() {
 		if res, err := client.SetInfo(context.TODO(), data); err != nil {
 			log.Printf("error::%#v \n", err)
 		} else {
-			log.Printf(randPath)
+			log.Printf(*path)
 			log.Printf("result:%#v \n", res)
 		}
 	} else if *mode == "info" {
