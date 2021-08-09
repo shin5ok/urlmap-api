@@ -15,6 +15,7 @@ message RedirectPath {
 
 message OrgUrl {
   string org = 1;
+  UserInfo userinfo = 2;
 }
 
 message User {
