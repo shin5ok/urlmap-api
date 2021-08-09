@@ -90,7 +90,7 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 	}
 	fmt.Println(result)
 
-	return &pb.OrgUrl{Org: result.Org}, nil
+	return &pb.OrgUrl{Org: result.Org, NotifyTo: result.NotifyTo}, nil
 
 }
 

@@ -13,16 +13,11 @@ message RedirectPath {
 
 message OrgUrl {
   string org = 1;
-  UserInfo userinfo = 2;
+  string notify_to = 2;
 }
 
 message User {
   string user = 1;
-}
-
-message UserInfo {
-  string user = 1;
-  string notify = 2;
 }
 
 message ArrayRedirectData {
