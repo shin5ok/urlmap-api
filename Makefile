@@ -1,3 +1,5 @@
+all: go python
+
 go:
 	protoc -Iproto --go_out=plugins=grpc:./pb proto/*.proto
 

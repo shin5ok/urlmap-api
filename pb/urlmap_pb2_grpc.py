@@ -14,15 +14,30 @@ class RedirectionStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.GetInfo = channel.unary_unary(
-        '/urlmap.Redirection/GetInfo',
-        request_serializer=urlmap__pb2.OrgUrl.SerializeToString,
-        response_deserializer=urlmap__pb2.RedirectData.FromString,
+    self.GetOrgByPath = channel.unary_unary(
+        '/urlmap.Redirection/GetOrgByPath',
+        request_serializer=urlmap__pb2.RedirectPath.SerializeToString,
+        response_deserializer=urlmap__pb2.OrgUrl.FromString,
+        )
+    self.GetInfoByUser = channel.unary_unary(
+        '/urlmap.Redirection/GetInfoByUser',
+        request_serializer=urlmap__pb2.User.SerializeToString,
+        response_deserializer=urlmap__pb2.ArrayRedirectData.FromString,
         )
     self.SetInfo = channel.unary_unary(
         '/urlmap.Redirection/SetInfo',
         request_serializer=urlmap__pb2.RedirectData.SerializeToString,
         response_deserializer=urlmap__pb2.OrgUrl.FromString,
+        )
+    self.GetUser = channel.unary_unary(
+        '/urlmap.Redirection/GetUser',
+        request_serializer=urlmap__pb2.User.SerializeToString,
+        response_deserializer=urlmap__pb2.UserInfo.FromString,
+        )
+    self.SetUser = channel.unary_unary(
+        '/urlmap.Redirection/SetUser',
+        request_serializer=urlmap__pb2.UserInfo.SerializeToString,
+        response_deserializer=urlmap__pb2.UserInfo.FromString,
         )
 
 
@@ -30,7 +45,14 @@ class RedirectionServicer(object):
   # missing associated documentation comment in .proto file
   pass
 
-  def GetInfo(self, request, context):
+  def GetOrgByPath(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetInfoByUser(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -44,18 +66,47 @@ class RedirectionServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def GetUser(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SetUser(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_RedirectionServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'GetInfo': grpc.unary_unary_rpc_method_handler(
-          servicer.GetInfo,
-          request_deserializer=urlmap__pb2.OrgUrl.FromString,
-          response_serializer=urlmap__pb2.RedirectData.SerializeToString,
+      'GetOrgByPath': grpc.unary_unary_rpc_method_handler(
+          servicer.GetOrgByPath,
+          request_deserializer=urlmap__pb2.RedirectPath.FromString,
+          response_serializer=urlmap__pb2.OrgUrl.SerializeToString,
+      ),
+      'GetInfoByUser': grpc.unary_unary_rpc_method_handler(
+          servicer.GetInfoByUser,
+          request_deserializer=urlmap__pb2.User.FromString,
+          response_serializer=urlmap__pb2.ArrayRedirectData.SerializeToString,
       ),
       'SetInfo': grpc.unary_unary_rpc_method_handler(
           servicer.SetInfo,
           request_deserializer=urlmap__pb2.RedirectData.FromString,
           response_serializer=urlmap__pb2.OrgUrl.SerializeToString,
+      ),
+      'GetUser': grpc.unary_unary_rpc_method_handler(
+          servicer.GetUser,
+          request_deserializer=urlmap__pb2.User.FromString,
+          response_serializer=urlmap__pb2.UserInfo.SerializeToString,
+      ),
+      'SetUser': grpc.unary_unary_rpc_method_handler(
+          servicer.SetUser,
+          request_deserializer=urlmap__pb2.UserInfo.FromString,
+          response_serializer=urlmap__pb2.UserInfo.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

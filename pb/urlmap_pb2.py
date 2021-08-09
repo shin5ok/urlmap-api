@@ -20,10 +20,41 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='urlmap',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\"\x15\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"_\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x0b\n\x03org\x18\x02 \x01(\t\x12\x13\n\x0bredirecturl\x18\x03 \x01(\t\x12\x0f\n\x07\x63omment\x18\x04 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x05 \x01(\x08\x32o\n\x0bRedirection\x12/\n\x07GetInfo\x12\x0e.urlmap.OrgUrl\x1a\x14.urlmap.RedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrlb\x06proto3')
+  serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\"\x1c\n\x0cRedirectPath\x12\x0c\n\x04path\x18\x01 \x01(\t\"\x15\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\"\x14\n\x04User\x12\x0c\n\x04user\x18\x01 \x01(\t\"(\n\x08UserInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x0e\n\x06notify\x18\x02 \x01(\t\"<\n\x11\x41rrayRedirectData\x12\'\n\tredirects\x18\x01 \x03(\x0b\x32\x14.urlmap.RedirectData\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"n\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x14\n\x0credirectPath\x18\x02 \x01(\t\x12\x0b\n\x03org\x18\x03 \x01(\t\x12\x0c\n\x04host\x18\x04 \x01(\t\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x06 \x01(\x05\x32\x88\x02\n\x0bRedirection\x12\x34\n\x0cGetOrgByPath\x12\x14.urlmap.RedirectPath\x1a\x0e.urlmap.OrgUrl\x12\x38\n\rGetInfoByUser\x12\x0c.urlmap.User\x1a\x19.urlmap.ArrayRedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrl\x12)\n\x07GetUser\x12\x0c.urlmap.User\x1a\x10.urlmap.UserInfo\x12-\n\x07SetUser\x12\x10.urlmap.UserInfo\x1a\x10.urlmap.UserInfob\x06proto3')
 )
 
 
+
+
+_REDIRECTPATH = _descriptor.Descriptor(
+  name='RedirectPath',
+  full_name='urlmap.RedirectPath',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='path', full_name='urlmap.RedirectPath.path', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=24,
+  serialized_end=52,
+)
 
 
 _ORGURL = _descriptor.Descriptor(
@@ -52,8 +83,108 @@ _ORGURL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24,
-  serialized_end=45,
+  serialized_start=54,
+  serialized_end=75,
+)
+
+
+_USER = _descriptor.Descriptor(
+  name='User',
+  full_name='urlmap.User',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user', full_name='urlmap.User.user', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=77,
+  serialized_end=97,
+)
+
+
+_USERINFO = _descriptor.Descriptor(
+  name='UserInfo',
+  full_name='urlmap.UserInfo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user', full_name='urlmap.UserInfo.user', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='notify', full_name='urlmap.UserInfo.notify', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=99,
+  serialized_end=139,
+)
+
+
+_ARRAYREDIRECTDATA = _descriptor.Descriptor(
+  name='ArrayRedirectData',
+  full_name='urlmap.ArrayRedirectData',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='redirects', full_name='urlmap.ArrayRedirectData.redirects', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=141,
+  serialized_end=201,
 )
 
 
@@ -90,8 +221,8 @@ _REDIRECTDATA_VALIDDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=103,
-  serialized_end=142,
+  serialized_start=259,
+  serialized_end=298,
 )
 
 _REDIRECTDATA = _descriptor.Descriptor(
@@ -120,8 +251,8 @@ _REDIRECTDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=47,
-  serialized_end=142,
+  serialized_start=203,
+  serialized_end=298,
 )
 
 
@@ -140,30 +271,37 @@ _REDIRECTINFO = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='org', full_name='urlmap.RedirectInfo.org', index=1,
+      name='redirectPath', full_name='urlmap.RedirectInfo.redirectPath', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='redirecturl', full_name='urlmap.RedirectInfo.redirecturl', index=2,
+      name='org', full_name='urlmap.RedirectInfo.org', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='comment', full_name='urlmap.RedirectInfo.comment', index=3,
+      name='host', full_name='urlmap.RedirectInfo.host', index=3,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='active', full_name='urlmap.RedirectInfo.active', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
+      name='comment', full_name='urlmap.RedirectInfo.comment', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='active', full_name='urlmap.RedirectInfo.active', index=5,
+      number=6, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -179,16 +317,28 @@ _REDIRECTINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=144,
-  serialized_end=239,
+  serialized_start=300,
+  serialized_end=410,
 )
 
+_ARRAYREDIRECTDATA.fields_by_name['redirects'].message_type = _REDIRECTDATA
 _REDIRECTDATA_VALIDDATE.containing_type = _REDIRECTDATA
 _REDIRECTDATA.fields_by_name['redirect'].message_type = _REDIRECTINFO
+DESCRIPTOR.message_types_by_name['RedirectPath'] = _REDIRECTPATH
 DESCRIPTOR.message_types_by_name['OrgUrl'] = _ORGURL
+DESCRIPTOR.message_types_by_name['User'] = _USER
+DESCRIPTOR.message_types_by_name['UserInfo'] = _USERINFO
+DESCRIPTOR.message_types_by_name['ArrayRedirectData'] = _ARRAYREDIRECTDATA
 DESCRIPTOR.message_types_by_name['RedirectData'] = _REDIRECTDATA
 DESCRIPTOR.message_types_by_name['RedirectInfo'] = _REDIRECTINFO
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+RedirectPath = _reflection.GeneratedProtocolMessageType('RedirectPath', (_message.Message,), {
+  'DESCRIPTOR' : _REDIRECTPATH,
+  '__module__' : 'urlmap_pb2'
+  # @@protoc_insertion_point(class_scope:urlmap.RedirectPath)
+  })
+_sym_db.RegisterMessage(RedirectPath)
 
 OrgUrl = _reflection.GeneratedProtocolMessageType('OrgUrl', (_message.Message,), {
   'DESCRIPTOR' : _ORGURL,
@@ -196,6 +346,27 @@ OrgUrl = _reflection.GeneratedProtocolMessageType('OrgUrl', (_message.Message,),
   # @@protoc_insertion_point(class_scope:urlmap.OrgUrl)
   })
 _sym_db.RegisterMessage(OrgUrl)
+
+User = _reflection.GeneratedProtocolMessageType('User', (_message.Message,), {
+  'DESCRIPTOR' : _USER,
+  '__module__' : 'urlmap_pb2'
+  # @@protoc_insertion_point(class_scope:urlmap.User)
+  })
+_sym_db.RegisterMessage(User)
+
+UserInfo = _reflection.GeneratedProtocolMessageType('UserInfo', (_message.Message,), {
+  'DESCRIPTOR' : _USERINFO,
+  '__module__' : 'urlmap_pb2'
+  # @@protoc_insertion_point(class_scope:urlmap.UserInfo)
+  })
+_sym_db.RegisterMessage(UserInfo)
+
+ArrayRedirectData = _reflection.GeneratedProtocolMessageType('ArrayRedirectData', (_message.Message,), {
+  'DESCRIPTOR' : _ARRAYREDIRECTDATA,
+  '__module__' : 'urlmap_pb2'
+  # @@protoc_insertion_point(class_scope:urlmap.ArrayRedirectData)
+  })
+_sym_db.RegisterMessage(ArrayRedirectData)
 
 RedirectData = _reflection.GeneratedProtocolMessageType('RedirectData', (_message.Message,), {
 
@@ -227,25 +398,52 @@ _REDIRECTION = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=241,
-  serialized_end=352,
+  serialized_start=413,
+  serialized_end=677,
   methods=[
   _descriptor.MethodDescriptor(
-    name='GetInfo',
-    full_name='urlmap.Redirection.GetInfo',
+    name='GetOrgByPath',
+    full_name='urlmap.Redirection.GetOrgByPath',
     index=0,
     containing_service=None,
-    input_type=_ORGURL,
-    output_type=_REDIRECTDATA,
+    input_type=_REDIRECTPATH,
+    output_type=_ORGURL,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetInfoByUser',
+    full_name='urlmap.Redirection.GetInfoByUser',
+    index=1,
+    containing_service=None,
+    input_type=_USER,
+    output_type=_ARRAYREDIRECTDATA,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
     name='SetInfo',
     full_name='urlmap.Redirection.SetInfo',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=_REDIRECTDATA,
     output_type=_ORGURL,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetUser',
+    full_name='urlmap.Redirection.GetUser',
+    index=3,
+    containing_service=None,
+    input_type=_USER,
+    output_type=_USERINFO,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SetUser',
+    full_name='urlmap.Redirection.SetUser',
+    index=4,
+    containing_service=None,
+    input_type=_USERINFO,
+    output_type=_USERINFO,
     serialized_options=None,
   ),
 ])
