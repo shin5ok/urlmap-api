@@ -28,7 +28,7 @@ func sqlConnect() (database *gorm.DB, err error) {
 
 type Redirects struct {
 	gorm.Model
-	User         string
+	User         string `gorm:"foreignKey:UserName"`
 	RedirectPath string
 	Org          string
 	Host         string
@@ -36,6 +36,12 @@ type Redirects struct {
 	Active       int
 	BeginAt      time.Time
 	EndAt        time.Time
+}
+
+type Users struct {
+	gorm.Model
+	Username string
+	NotifyTo string
 }
 
 /* for test */
