@@ -5,8 +5,6 @@ service Redirection {
   rpc GetOrgByPath (RedirectPath) returns (OrgUrl);
   rpc GetInfoByUser (User) returns (ArrayRedirectData);
   rpc SetInfo (RedirectData) returns (OrgUrl);
-  rpc GetUser (User) returns (UserInfo);
-  rpc SetUser (UserInfo) returns (UserInfo);
 }
 
 message RedirectPath {
