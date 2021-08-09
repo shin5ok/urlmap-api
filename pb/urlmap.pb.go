@@ -502,7 +502,7 @@ var file_urlmap_proto_rawDesc = []byte{
 	0x09, 0x52, 0x04, 0x68, 0x6f, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6d, 0x6d, 0x65,
 	0x6e, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e,
 	0x74, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28,
-	0x05, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x32, 0x88, 0x02, 0x0a, 0x0b, 0x52, 0x65,
+	0x05, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x32, 0xae, 0x01, 0x0a, 0x0b, 0x52, 0x65,
 	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x34, 0x0a, 0x0c, 0x47, 0x65, 0x74,
 	0x4f, 0x72, 0x67, 0x42, 0x79, 0x50, 0x61, 0x74, 0x68, 0x12, 0x14, 0x2e, 0x75, 0x72, 0x6c, 0x6d,
 	0x61, 0x70, 0x2e, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x50, 0x61, 0x74, 0x68, 0x1a,
@@ -513,13 +513,8 @@ var file_urlmap_proto_rawDesc = []byte{
 	0x69, 0x72, 0x65, 0x63, 0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x2f, 0x0a, 0x07, 0x53, 0x65, 0x74,
 	0x49, 0x6e, 0x66, 0x6f, 0x12, 0x14, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x52, 0x65,
 	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x44, 0x61, 0x74, 0x61, 0x1a, 0x0e, 0x2e, 0x75, 0x72, 0x6c,
-	0x6d, 0x61, 0x70, 0x2e, 0x4f, 0x72, 0x67, 0x55, 0x72, 0x6c, 0x12, 0x29, 0x0a, 0x07, 0x47, 0x65,
-	0x74, 0x55, 0x73, 0x65, 0x72, 0x12, 0x0c, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55,
-	0x73, 0x65, 0x72, 0x1a, 0x10, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55, 0x73, 0x65,
-	0x72, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x2d, 0x0a, 0x07, 0x53, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72,
-	0x12, 0x10, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x49, 0x6e,
-	0x66, 0x6f, 0x1a, 0x10, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55, 0x73, 0x65, 0x72,
-	0x49, 0x6e, 0x66, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6d, 0x61, 0x70, 0x2e, 0x4f, 0x72, 0x67, 0x55, 0x72, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -552,15 +547,11 @@ var file_urlmap_proto_depIdxs = []int32{
 	0, // 3: urlmap.Redirection.GetOrgByPath:input_type -> urlmap.RedirectPath
 	2, // 4: urlmap.Redirection.GetInfoByUser:input_type -> urlmap.User
 	5, // 5: urlmap.Redirection.SetInfo:input_type -> urlmap.RedirectData
-	2, // 6: urlmap.Redirection.GetUser:input_type -> urlmap.User
-	3, // 7: urlmap.Redirection.SetUser:input_type -> urlmap.UserInfo
-	1, // 8: urlmap.Redirection.GetOrgByPath:output_type -> urlmap.OrgUrl
-	4, // 9: urlmap.Redirection.GetInfoByUser:output_type -> urlmap.ArrayRedirectData
-	1, // 10: urlmap.Redirection.SetInfo:output_type -> urlmap.OrgUrl
-	3, // 11: urlmap.Redirection.GetUser:output_type -> urlmap.UserInfo
-	3, // 12: urlmap.Redirection.SetUser:output_type -> urlmap.UserInfo
-	8, // [8:13] is the sub-list for method output_type
-	3, // [3:8] is the sub-list for method input_type
+	1, // 6: urlmap.Redirection.GetOrgByPath:output_type -> urlmap.OrgUrl
+	4, // 7: urlmap.Redirection.GetInfoByUser:output_type -> urlmap.ArrayRedirectData
+	1, // 8: urlmap.Redirection.SetInfo:output_type -> urlmap.OrgUrl
+	6, // [6:9] is the sub-list for method output_type
+	3, // [3:6] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
 	3, // [3:3] is the sub-list for extension extendee
 	0, // [0:3] is the sub-list for field type_name
@@ -704,8 +695,6 @@ type RedirectionClient interface {
 	GetOrgByPath(ctx context.Context, in *RedirectPath, opts ...grpc.CallOption) (*OrgUrl, error)
 	GetInfoByUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*ArrayRedirectData, error)
 	SetInfo(ctx context.Context, in *RedirectData, opts ...grpc.CallOption) (*OrgUrl, error)
-	GetUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*UserInfo, error)
-	SetUser(ctx context.Context, in *UserInfo, opts ...grpc.CallOption) (*UserInfo, error)
 }
 
 type redirectionClient struct {
@@ -743,31 +732,11 @@ func (c *redirectionClient) SetInfo(ctx context.Context, in *RedirectData, opts 
 	return out, nil
 }
 
-func (c *redirectionClient) GetUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*UserInfo, error) {
-	out := new(UserInfo)
-	err := c.cc.Invoke(ctx, "/urlmap.Redirection/GetUser", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *redirectionClient) SetUser(ctx context.Context, in *UserInfo, opts ...grpc.CallOption) (*UserInfo, error) {
-	out := new(UserInfo)
-	err := c.cc.Invoke(ctx, "/urlmap.Redirection/SetUser", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // RedirectionServer is the server API for Redirection service.
 type RedirectionServer interface {
 	GetOrgByPath(context.Context, *RedirectPath) (*OrgUrl, error)
 	GetInfoByUser(context.Context, *User) (*ArrayRedirectData, error)
 	SetInfo(context.Context, *RedirectData) (*OrgUrl, error)
-	GetUser(context.Context, *User) (*UserInfo, error)
-	SetUser(context.Context, *UserInfo) (*UserInfo, error)
 }
 
 // UnimplementedRedirectionServer can be embedded to have forward compatible implementations.
@@ -782,12 +751,6 @@ func (*UnimplementedRedirectionServer) GetInfoByUser(context.Context, *User) (*A
 }
 func (*UnimplementedRedirectionServer) SetInfo(context.Context, *RedirectData) (*OrgUrl, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetInfo not implemented")
-}
-func (*UnimplementedRedirectionServer) GetUser(context.Context, *User) (*UserInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
-}
-func (*UnimplementedRedirectionServer) SetUser(context.Context, *UserInfo) (*UserInfo, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetUser not implemented")
 }
 
 func RegisterRedirectionServer(s *grpc.Server, srv RedirectionServer) {
@@ -848,42 +811,6 @@ func _Redirection_SetInfo_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Redirection_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(User)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RedirectionServer).GetUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/urlmap.Redirection/GetUser",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedirectionServer).GetUser(ctx, req.(*User))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Redirection_SetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RedirectionServer).SetUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/urlmap.Redirection/SetUser",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedirectionServer).SetUser(ctx, req.(*UserInfo))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _Redirection_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "urlmap.Redirection",
 	HandlerType: (*RedirectionServer)(nil),
@@ -899,14 +826,6 @@ var _Redirection_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetInfo",
 			Handler:    _Redirection_SetInfo_Handler,
-		},
-		{
-			MethodName: "GetUser",
-			Handler:    _Redirection_GetUser_Handler,
-		},
-		{
-			MethodName: "SetUser",
-			Handler:    _Redirection_SetUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 	"log"
 	pb "urlmap-api/pb"
 
@@ -76,15 +77,18 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 	db := makeConn()
 
 	type Redirects struct {
-		Org string
+		Org      string
+		NotifyTo string
 	}
 	var result Redirects
 	// Field name in where args should be actual column name, not struct field
-	status := db.Where("redirect_path = ?", p).First(&result)
+	status := db.Table("redirects").Select("redirects.org, users.notify_to").Joins("join users on redirects.user = users.username").Where("redirect_path = ?", p).Scan(&result)
+
 	if status.Error != nil {
 		log.Println(status.Error)
 		return &pb.OrgUrl{}, status.Error
 	}
+	fmt.Println(result)
 
 	return &pb.OrgUrl{Org: result.Org}, nil
 

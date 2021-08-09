@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='urlmap',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\"\x1c\n\x0cRedirectPath\x12\x0c\n\x04path\x18\x01 \x01(\t\"9\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\x12\"\n\x08userinfo\x18\x02 \x01(\x0b\x32\x10.urlmap.UserInfo\"\x14\n\x04User\x12\x0c\n\x04user\x18\x01 \x01(\t\"(\n\x08UserInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x0e\n\x06notify\x18\x02 \x01(\t\"<\n\x11\x41rrayRedirectData\x12\'\n\tredirects\x18\x01 \x03(\x0b\x32\x14.urlmap.RedirectData\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"n\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x14\n\x0credirectPath\x18\x02 \x01(\t\x12\x0b\n\x03org\x18\x03 \x01(\t\x12\x0c\n\x04host\x18\x04 \x01(\t\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x06 \x01(\x05\x32\x88\x02\n\x0bRedirection\x12\x34\n\x0cGetOrgByPath\x12\x14.urlmap.RedirectPath\x1a\x0e.urlmap.OrgUrl\x12\x38\n\rGetInfoByUser\x12\x0c.urlmap.User\x1a\x19.urlmap.ArrayRedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrl\x12)\n\x07GetUser\x12\x0c.urlmap.User\x1a\x10.urlmap.UserInfo\x12-\n\x07SetUser\x12\x10.urlmap.UserInfo\x1a\x10.urlmap.UserInfob\x06proto3')
+  serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\"\x1c\n\x0cRedirectPath\x12\x0c\n\x04path\x18\x01 \x01(\t\"9\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\x12\"\n\x08userinfo\x18\x02 \x01(\x0b\x32\x10.urlmap.UserInfo\"\x14\n\x04User\x12\x0c\n\x04user\x18\x01 \x01(\t\"(\n\x08UserInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x0e\n\x06notify\x18\x02 \x01(\t\"<\n\x11\x41rrayRedirectData\x12\'\n\tredirects\x18\x01 \x03(\x0b\x32\x14.urlmap.RedirectData\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"n\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x14\n\x0credirectPath\x18\x02 \x01(\t\x12\x0b\n\x03org\x18\x03 \x01(\t\x12\x0c\n\x04host\x18\x04 \x01(\t\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x06 \x01(\x05\x32\xae\x01\n\x0bRedirection\x12\x34\n\x0cGetOrgByPath\x12\x14.urlmap.RedirectPath\x1a\x0e.urlmap.OrgUrl\x12\x38\n\rGetInfoByUser\x12\x0c.urlmap.User\x1a\x19.urlmap.ArrayRedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrlb\x06proto3')
 )
 
 
@@ -407,7 +407,7 @@ _REDIRECTION = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   serialized_start=449,
-  serialized_end=713,
+  serialized_end=623,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetOrgByPath',
@@ -434,24 +434,6 @@ _REDIRECTION = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_REDIRECTDATA,
     output_type=_ORGURL,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='GetUser',
-    full_name='urlmap.Redirection.GetUser',
-    index=3,
-    containing_service=None,
-    input_type=_USER,
-    output_type=_USERINFO,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SetUser',
-    full_name='urlmap.Redirection.SetUser',
-    index=4,
-    containing_service=None,
-    input_type=_USERINFO,
-    output_type=_USERINFO,
     serialized_options=None,
   ),
 ])
