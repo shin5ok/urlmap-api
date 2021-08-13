@@ -34,7 +34,7 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 
 	pbResults := &pb.ArrayRedirectData{}
 	resultSlice := []*pb.RedirectData{}
-	type Redirects struct {
+	type RedirectInfo struct {
 		Org          string
 		User         string
 		Host         string
@@ -42,7 +42,7 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 		RedirectPath string
 		Active       int32
 	}
-	var results []Redirects
+	var results []RedirectInfo
 	// Field name in where args should be actual column name, not struct field
 	status := db.Where("user = ?", u).Find(&results)
 	if status.Error != nil {
@@ -76,11 +76,11 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 	p := path.Path
 	db := makeConn()
 
-	type Redirects struct {
+	type RedirectOrg struct {
 		Org      string
 		NotifyTo string
 	}
-	var result Redirects
+	var result RedirectOrg
 	// Field name in where args should be actual column name, not struct field
 	status := db.Table("redirects").Select("redirects.org, users.notify_to").Joins("join users on redirects.user = users.username").Where("redirect_path = ?", p).Scan(&result)
 
@@ -104,6 +104,9 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 	redirect.Active = 1
 	status := db.Create(&redirect)
 	if status.Error != nil {
+		// jsonRedirect, _ := json.MarshalIndent(redirect, "", " ")
+		// log.Println(string(jsonRedirect))
+		log.Printf("%+v", redirect)
 		log.Println(status.Error)
 		return &pb.OrgUrl{}, status.Error
 	}
