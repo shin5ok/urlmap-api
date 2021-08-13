@@ -38,7 +38,7 @@ func main() {
 			User:         "kawanos",
 			Org:          *org,
 			RedirectPath: *path,
-			Comment:      "This is a sample comment",
+			Comment:      "sample test",
 			Active:       1}
 		// &pb.RedirectData_ValidDate{"2020-01-01", "2020-01-02"},
 
