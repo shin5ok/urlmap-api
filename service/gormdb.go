@@ -34,8 +34,8 @@ type Redirects struct {
 	Host         string
 	Comment      string
 	Active       int
-	BeginAt      time.Time
-	EndAt        time.Time
+	BeginAt      *time.Time // it will insert NULL when no value is specified
+	EndAt        *time.Time // it will insert NULL when no value is specified
 }
 
 type Users struct {

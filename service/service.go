@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"time"
 	pb "urlmap-api/pb"
 
 	"github.com/jinzhu/gorm"
@@ -102,6 +103,8 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 	redirect.Org = r.Redirect.Org
 	redirect.Comment = r.Redirect.Comment
 	redirect.Active = 1
+	t := time.Now()
+	redirect.BeginAt = &t
 	status := db.Create(&redirect)
 	if status.Error != nil {
 		// jsonRedirect, _ := json.MarshalIndent(redirect, "", " ")
