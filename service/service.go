@@ -35,15 +35,9 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 
 	pbResults := &pb.ArrayRedirectData{}
 	resultSlice := []*pb.RedirectData{}
-	type RedirectInfo struct {
-		Org          string
-		User         string
-		Host         string
-		Comment      string
-		RedirectPath string
-		Active       int32
-	}
-	var results []RedirectInfo
+
+	// from ./gormdb.go as the same package
+	var results []Redirects
 	// Field name in where args should be actual column name, not struct field
 	status := db.Where("user = ?", u).Find(&results)
 	if status.Error != nil {
