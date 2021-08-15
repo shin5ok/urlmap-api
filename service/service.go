@@ -102,8 +102,6 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 	redirect.BeginAt = &t
 	status := db.Create(&redirect)
 	if status.Error != nil {
-		// jsonRedirect, _ := json.MarshalIndent(redirect, "", " ")
-		// log.Println(string(jsonRedirect))
 		log.Printf("%+v", redirect)
 		log.Println(status.Error)
 		return &pb.OrgUrl{}, status.Error
@@ -116,8 +114,8 @@ func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error)
 	db := makeConn()
 	user := Users{Username: r.User, NotifyTo: r.NotifyTo}
 	db.Clauses(clause.OnConflict{
-		Columns:   []clause.Column{{Name: "Username"}},
-		DoUpdates: clause.Assignments(map[string]interface{}{"Username": r.User}),
+		Columns:   []clause.Column{{Name: "username"}},
+		DoUpdates: clause.Assignments(map[string]interface{}{"username": r.User, "notify_to": r.NotifyTo}),
 	}).Create(&user)
 	return &pb.User{User: user.Username, NotifyTo: user.NotifyTo}, nil
 }

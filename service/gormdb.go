@@ -27,7 +27,6 @@ func sqlConnect() (database *gorm.DB, err error) {
 	PARAMS := "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
 	CONNECT := DBUSER + ":" + DBPASS + "@" + PROTOCOL + "/" + DBNAME + PARAMS
 	return gorm.Open(mysql.Open(CONNECT), &gorm.Config{})
-	// return gorm.Open(DBMS, CONNECT)
 }
 
 type Redirects struct {
