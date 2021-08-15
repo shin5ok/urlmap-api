@@ -10,6 +10,7 @@ service Redirection {
 
 message RedirectPath {
   string path = 1;
+  string notify_to = 2;
 }
 
 message OrgUrl {

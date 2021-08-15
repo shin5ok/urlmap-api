@@ -20,7 +20,11 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='urlmap',
   syntax='proto3',
   serialized_options=None,
+<<<<<<< HEAD
   serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\"\x1c\n\x0cRedirectPath\x12\x0c\n\x04path\x18\x01 \x01(\t\"(\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"\'\n\x04User\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"<\n\x11\x41rrayRedirectData\x12\'\n\tredirects\x18\x01 \x03(\x0b\x32\x14.urlmap.RedirectData\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"n\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x14\n\x0credirectPath\x18\x02 \x01(\t\x12\x0b\n\x03org\x18\x03 \x01(\t\x12\x0c\n\x04host\x18\x04 \x01(\t\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x06 \x01(\x05\x32\xd5\x01\n\x0bRedirection\x12\x34\n\x0cGetOrgByPath\x12\x14.urlmap.RedirectPath\x1a\x0e.urlmap.OrgUrl\x12\x38\n\rGetInfoByUser\x12\x0c.urlmap.User\x1a\x19.urlmap.ArrayRedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrl\x12%\n\x07SetUser\x12\x0c.urlmap.User\x1a\x0c.urlmap.Userb\x06proto3')
+=======
+  serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\"/\n\x0cRedirectPath\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"(\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"\x14\n\x04User\x12\x0c\n\x04user\x18\x01 \x01(\t\"<\n\x11\x41rrayRedirectData\x12\'\n\tredirects\x18\x01 \x03(\x0b\x32\x14.urlmap.RedirectData\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"n\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x14\n\x0credirectPath\x18\x02 \x01(\t\x12\x0b\n\x03org\x18\x03 \x01(\t\x12\x0c\n\x04host\x18\x04 \x01(\t\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x06 \x01(\x05\x32\xd5\x01\n\x0bRedirection\x12\x34\n\x0cGetOrgByPath\x12\x14.urlmap.RedirectPath\x1a\x0e.urlmap.OrgUrl\x12\x38\n\rGetInfoByUser\x12\x0c.urlmap.User\x1a\x19.urlmap.ArrayRedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrl\x12%\n\x07SetUser\x12\x0c.urlmap.User\x1a\x0c.urlmap.Userb\x06proto3')
+>>>>>>> refs/remotes/origin/main
 )
 
 
@@ -40,6 +44,13 @@ _REDIRECTPATH = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='notify_to', full_name='urlmap.RedirectPath.notify_to', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -53,7 +64,7 @@ _REDIRECTPATH = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=24,
-  serialized_end=52,
+  serialized_end=71,
 )
 
 
@@ -90,8 +101,8 @@ _ORGURL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=54,
-  serialized_end=94,
+  serialized_start=73,
+  serialized_end=113,
 )
 
 
@@ -128,7 +139,11 @@ _USER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
+<<<<<<< HEAD
   serialized_start=96,
+=======
+  serialized_start=115,
+>>>>>>> refs/remotes/origin/main
   serialized_end=135,
 )
 
