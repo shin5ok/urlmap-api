@@ -60,6 +60,13 @@ func main() {
 			j, _ := json.Marshal(res)
 			fmt.Println(string(j))
 		}
+	} else if *mode == "setuser" {
+		u := &pb.User{User: *user}
+
+		if res, err := client.SetUser(context.TODO(), u); err != nil {
+			j, _ := json.Marshal(res)
+			fmt.Println(string(j))
+		}
 
 	} else {
 		path := &pb.RedirectPath{Path: *path}

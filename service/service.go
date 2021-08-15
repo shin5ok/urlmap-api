@@ -114,12 +114,17 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 
 func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error) {
 	db := makeConn()
-	user := pb.User{}
-	user.User = r.User
-	user.NotifyTo = r.NotifyTo
+	// user := pb.User{}
+	// type User struct {
+	// 	UserName string
+	// 	NotifyTo string
+	// }
+	user := Users{UserName: r.User, NotifyTo: r.NotifyTo}
+	// user.User = r.User
+	// user.NotifyTo = r.NotifyTo
 	db.Clauses(clause.OnConflict{
 		Columns:   []clause.Column{{Name: "UserName"}},
 		DoUpdates: clause.Assignments(map[string]interface{}{"UserName": r.User, "NotifyTo": r.NotifyTo}),
 	}).Create(&user)
-	return &user, nil
+	return &pb.User{User: user.UserName, NotifyTo: user.NotifyTo}, nil
 }
