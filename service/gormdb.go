@@ -7,7 +7,10 @@ import (
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
+
+	"gorm.io/driver/mysql"
+	_ "gorm.io/gorm/clause"
 )
 
 var (
@@ -23,7 +26,8 @@ func sqlConnect() (database *gorm.DB, err error) {
 
 	PARAMS := "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
 	CONNECT := DBUSER + ":" + DBPASS + "@" + PROTOCOL + "/" + DBNAME + PARAMS
-	return gorm.Open(DBMS, CONNECT)
+	return gorm.Open(mysql.Open(CONNECT), &gorm.Config{})
+	// return gorm.Open(DBMS, CONNECT)
 }
 
 type Redirects struct {
