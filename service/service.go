@@ -7,7 +7,8 @@ import (
 	"time"
 	pb "urlmap-api/pb"
 
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 type Redirection struct{}
@@ -109,4 +110,16 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 	}
 	org := &pb.OrgUrl{Org: r.Redirect.Org}
 	return org, nil
+}
+
+func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error) {
+	db := makeConn()
+	user := pb.User{}
+	user.User = r.User
+	user.NotifyTo = r.NotifyTo
+	db.Clauses(clause.OnConflict{
+		Columns:   []clause.Column{{Name: "UserName"}},
+		DoUpdates: clause.Assignments(map[string]interface{}{"UserName": r.User, "NotifyTo": r.NotifyTo}),
+	}).Create(&user)
+	return &user, nil
 }
