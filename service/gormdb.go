@@ -44,7 +44,7 @@ type Redirects struct {
 
 type Users struct {
 	// gorm.Model
-	UserName string
+	Username string
 	NotifyTo string
 }
 
