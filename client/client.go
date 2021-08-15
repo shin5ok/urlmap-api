@@ -18,6 +18,7 @@ func main() {
 	path := flag.String("path", "", "redirect path")
 	mode := flag.String("mode", "get", "set or get")
 	user := flag.String("user", "", "info data")
+	notify := flag.String("notify", "", "notify to")
 	org := flag.String("org", "", "org url")
 	flag.Parse()
 	conn, err := grpc.Dial(*host, grpc.WithInsecure())
@@ -35,7 +36,7 @@ func main() {
 		}
 		// randPath := strings.Split(uuid.New().String(), "-")[0]
 		data.Redirect = &pb.RedirectInfo{
-			User:         "kawanos",
+			User:         *user,
 			Org:          *org,
 			RedirectPath: *path,
 			Comment:      "sample test",
@@ -57,14 +58,16 @@ func main() {
 		} else {
 			// format specified "%+v" to dump
 			// fmt.Printf("%+v\n", res)
-			j, _ := json.Marshal(res)
+			j, _ := json.MarshalIndent(res, "", " ")
 			fmt.Println(string(j))
 		}
 	} else if *mode == "setuser" {
-		u := &pb.User{User: *user}
+		u := &pb.User{User: *user, NotifyTo: *notify}
 
 		if res, err := client.SetUser(context.TODO(), u); err != nil {
-			j, _ := json.Marshal(res)
+			log.Printf("%+v\n", err)
+		} else {
+			j, _ := json.MarshalIndent(res, "", " ")
 			fmt.Println(string(j))
 		}
 
