@@ -20,11 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='urlmap',
   syntax='proto3',
   serialized_options=None,
-<<<<<<< HEAD
-  serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\"\x1c\n\x0cRedirectPath\x12\x0c\n\x04path\x18\x01 \x01(\t\"(\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"\'\n\x04User\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"<\n\x11\x41rrayRedirectData\x12\'\n\tredirects\x18\x01 \x03(\x0b\x32\x14.urlmap.RedirectData\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"n\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x14\n\x0credirectPath\x18\x02 \x01(\t\x12\x0b\n\x03org\x18\x03 \x01(\t\x12\x0c\n\x04host\x18\x04 \x01(\t\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x06 \x01(\x05\x32\xd5\x01\n\x0bRedirection\x12\x34\n\x0cGetOrgByPath\x12\x14.urlmap.RedirectPath\x1a\x0e.urlmap.OrgUrl\x12\x38\n\rGetInfoByUser\x12\x0c.urlmap.User\x1a\x19.urlmap.ArrayRedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrl\x12%\n\x07SetUser\x12\x0c.urlmap.User\x1a\x0c.urlmap.Userb\x06proto3')
-=======
-  serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\"/\n\x0cRedirectPath\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"(\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"\x14\n\x04User\x12\x0c\n\x04user\x18\x01 \x01(\t\"<\n\x11\x41rrayRedirectData\x12\'\n\tredirects\x18\x01 \x03(\x0b\x32\x14.urlmap.RedirectData\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"n\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x14\n\x0credirectPath\x18\x02 \x01(\t\x12\x0b\n\x03org\x18\x03 \x01(\t\x12\x0c\n\x04host\x18\x04 \x01(\t\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x06 \x01(\x05\x32\xd5\x01\n\x0bRedirection\x12\x34\n\x0cGetOrgByPath\x12\x14.urlmap.RedirectPath\x1a\x0e.urlmap.OrgUrl\x12\x38\n\rGetInfoByUser\x12\x0c.urlmap.User\x1a\x19.urlmap.ArrayRedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrl\x12%\n\x07SetUser\x12\x0c.urlmap.User\x1a\x0c.urlmap.Userb\x06proto3')
->>>>>>> refs/remotes/origin/main
+  serialized_pb=_b('\n\x0curlmap.proto\x12\x06urlmap\"/\n\x0cRedirectPath\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"(\n\x06OrgUrl\x12\x0b\n\x03org\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"\'\n\x04User\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x11\n\tnotify_to\x18\x02 \x01(\t\"<\n\x11\x41rrayRedirectData\x12\'\n\tredirects\x18\x01 \x03(\x0b\x32\x14.urlmap.RedirectData\"_\n\x0cRedirectData\x12&\n\x08redirect\x18\x01 \x01(\x0b\x32\x14.urlmap.RedirectInfo\x1a\'\n\tValidDate\x12\r\n\x05\x62\x65gin\x18\x01 \x01(\t\x12\x0b\n\x03\x65nd\x18\x02 \x01(\t\"n\n\x0cRedirectInfo\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x14\n\x0credirectPath\x18\x02 \x01(\t\x12\x0b\n\x03org\x18\x03 \x01(\t\x12\x0c\n\x04host\x18\x04 \x01(\t\x12\x0f\n\x07\x63omment\x18\x05 \x01(\t\x12\x0e\n\x06\x61\x63tive\x18\x06 \x01(\x05\x32\xd5\x01\n\x0bRedirection\x12\x34\n\x0cGetOrgByPath\x12\x14.urlmap.RedirectPath\x1a\x0e.urlmap.OrgUrl\x12\x38\n\rGetInfoByUser\x12\x0c.urlmap.User\x1a\x19.urlmap.ArrayRedirectData\x12/\n\x07SetInfo\x12\x14.urlmap.RedirectData\x1a\x0e.urlmap.OrgUrl\x12%\n\x07SetUser\x12\x0c.urlmap.User\x1a\x0c.urlmap.Userb\x06proto3')
 )
 
 
@@ -139,12 +135,8 @@ _USER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-<<<<<<< HEAD
-  serialized_start=96,
-=======
   serialized_start=115,
->>>>>>> refs/remotes/origin/main
-  serialized_end=135,
+  serialized_end=154,
 )
 
 
@@ -174,8 +166,8 @@ _ARRAYREDIRECTDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=137,
-  serialized_end=197,
+  serialized_start=156,
+  serialized_end=216,
 )
 
 
@@ -212,8 +204,8 @@ _REDIRECTDATA_VALIDDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=255,
-  serialized_end=294,
+  serialized_start=274,
+  serialized_end=313,
 )
 
 _REDIRECTDATA = _descriptor.Descriptor(
@@ -242,8 +234,8 @@ _REDIRECTDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=199,
-  serialized_end=294,
+  serialized_start=218,
+  serialized_end=313,
 )
 
 
@@ -308,8 +300,8 @@ _REDIRECTINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=296,
-  serialized_end=406,
+  serialized_start=315,
+  serialized_end=425,
 )
 
 _ARRAYREDIRECTDATA.fields_by_name['redirects'].message_type = _REDIRECTDATA
@@ -381,8 +373,8 @@ _REDIRECTION = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=409,
-  serialized_end=622,
+  serialized_start=428,
+  serialized_end=641,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetOrgByPath',
