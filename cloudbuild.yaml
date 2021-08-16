@@ -21,6 +21,7 @@ steps:
       git config --global user.name shingo
       git commit -va -m "Update by GitOps"
       git push origin stage
+      cat deployment.yaml
   secretEnv: ['TOKEN']
 availableSecrets:
   secretManager: 
