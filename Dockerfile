@@ -8,7 +8,8 @@ COPY pb/ ./pb/
 COPY main.go ./
 RUN CGO_ENABLED=0 GOOS=linux go build -o /go/bin/main
 
-FROM scratch as main
+FROM golang as main
+# FROM scratch as main
 ENV TZ Asia/Tokyo
 COPY --from=builder /go/bin/main /main
 CMD ["/main"]
