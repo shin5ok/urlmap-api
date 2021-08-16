@@ -7,15 +7,15 @@ import (
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/shin5ok/envorsecretm"
 	"gorm.io/gorm"
 
-	"github.com/shin5ok/envorsecret"
 	"gorm.io/driver/mysql"
 	_ "gorm.io/gorm/clause"
 )
 
 var project = os.Getenv("PROJECT_ID")
-var c = envorsecret.Config{project}
+var c = envorsecretm.Config{project}
 
 var (
 	DBMS     = "mysql"
