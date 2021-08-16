@@ -12,7 +12,7 @@ steps:
     - '-c'
     - |
       git clone https://$$TOKEN@github.com/shin5ok/gitops-urlmap working.$SHORT_SHA && \
-      cd working.$SHORT_SHA && \
+      cd working.$SHORT_SHA/urlmap-api && \
       git checkout stage && \
       cat deployment.yaml.tpl | sed -e "s/SHORT_SHA/${SHORT_SHA}/" | sed -e "s/PROJECT_ID/${PROJECT_ID}/" > deployment.yaml
       git add .
@@ -20,7 +20,6 @@ steps:
       git config --global user.name shingo
       git commit -va -m "Update by GitOps"
       git push origin stage
-      cd .. && rm -r -f working.$SHORT_SHA/
   secretEnv: ['TOKEN']
 availableSecrets:
   secretManager: 
