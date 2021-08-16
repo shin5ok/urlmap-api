@@ -14,7 +14,7 @@ import (
 	_ "gorm.io/gorm/clause"
 )
 
-var project = os.Getenv("PROJECT_ID")
+var project = os.Getenv("PROJECT")
 var c = envorsecretm.Config{project}
 
 var (
