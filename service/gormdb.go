@@ -9,16 +9,20 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"gorm.io/gorm"
 
+	"github.com/shin5ok/envorsecret"
 	"gorm.io/driver/mysql"
 	_ "gorm.io/gorm/clause"
 )
 
+var project = os.Getenv("PROJECT_ID")
+var c = envorsecret.Config{project}
+
 var (
 	DBMS     = "mysql"
-	DBUSER   = os.Getenv("DBUSER")
-	DBPASS   = os.Getenv("DBPASSWORD")
-	DBNAME   = os.Getenv("DBNAME")
-	HOST     = os.Getenv("DBHOST")
+	DBUSER   = c.Get("DBUSER")
+	DBPASS   = c.Get("DBPASSWORD")
+	DBNAME   = c.Get("DBNAME")
+	HOST     = c.Get("DBHOST")
 	PROTOCOL = fmt.Sprintf("tcp(%s:3306)", HOST)
 )
 
