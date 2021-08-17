@@ -27,7 +27,7 @@ func makeConn() *gorm.DB {
 		return dbConn
 	}
 	log.Println("init db connection")
-	db, err := sqlConnect(project)
+	db, err := sqlConnect(Project)
 	if err != nil {
 		log.Fatal(err)
 	}
