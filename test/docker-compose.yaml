@@ -4,6 +4,7 @@ services:
   testmysql:
     image: mysql:5.7
     environment:
+      PROJECT: ${PROJECT_ID}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -15,6 +16,7 @@ services:
   main:
     build: ../
     environment: 
+      PROJECT: ${PROJECT_ID}
       DBUSER: ${MYSQL_USER}
       DBNAME: ${MYSQL_DATABASE}
       DBPASSWORD: ${MYSQL_PASSWORD}

@@ -15,11 +15,7 @@ import (
 type Redirection struct{}
 
 var dbConn *gorm.DB
-var Project string
-
-func init() {
-	Project = os.Getenv("PROJECT")
-}
+var Project = os.Getenv("PROJECT")
 
 func makeConn() *gorm.DB {
 	if dbConn != nil {
