@@ -3,7 +3,6 @@ package service
 import (
 	"fmt"
 	"log"
-	"os"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -14,7 +13,6 @@ import (
 	_ "gorm.io/gorm/clause"
 )
 
-var project = os.Getenv("PROJECT")
 var c = envorsecretm.Config{project}
 
 var (
@@ -26,7 +24,7 @@ var (
 	PROTOCOL = fmt.Sprintf("tcp(%s:3306)", HOST)
 )
 
-func sqlConnect() (database *gorm.DB, err error) {
+func sqlConnect(project string) (database *gorm.DB, err error) {
 
 	PARAMS := "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
 	CONNECT := DBUSER + ":" + DBPASS + "@" + PROTOCOL + "/" + DBNAME + PARAMS

@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
 	"time"
 	pb "urlmap-api/pb"
 
@@ -14,15 +15,19 @@ import (
 type Redirection struct{}
 
 var dbConn *gorm.DB
+var project string
 
-func init() {}
+func init() {
+	project = os.Getenv("PROJECT")
+}
+
 func makeConn() *gorm.DB {
 	if dbConn != nil {
 		log.Println("using a stored connection")
 		return dbConn
 	}
 	log.Println("init db connection")
-	db, err := sqlConnect()
+	db, err := sqlConnect(project)
 	if err != nil {
 		log.Fatal(err)
 	}
