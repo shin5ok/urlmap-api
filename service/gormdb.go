@@ -12,7 +12,7 @@ import (
 	_ "gorm.io/gorm/clause"
 )
 
-var c = envorsecretm.Config{project}
+var c = envorsecretm.Config{Project}
 
 var (
 	DBMS     = "mysql"
