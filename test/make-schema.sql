@@ -7,7 +7,7 @@ create table if not exists `users`
 create table IF not exists `redirects`
 (
  `user`             VARCHAR(64),
- `redirect_path`	VARCHAR(128),
+ `redirect_path`	VARCHAR(128) primary key,
  `org`			VARCHAR(10240),
  `host`			VARCHAR(128),
  `comment`		TEXT,
