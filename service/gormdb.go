@@ -5,28 +5,17 @@ import (
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/shin5ok/envorsecretm"
 	"gorm.io/gorm"
 
 	"gorm.io/driver/mysql"
 	_ "gorm.io/gorm/clause"
 )
 
-var c = envorsecretm.Config{Project}
+func sqlConnect(project string, p dbParams) (database *gorm.DB, err error) {
 
-var (
-	DBMS     = "mysql"
-	DBUSER   = c.Get("DBUSER")
-	DBPASS   = c.Get("DBPASSWORD")
-	DBNAME   = c.Get("DBNAME")
-	HOST     = c.Get("DBHOST")
-	PROTOCOL = fmt.Sprintf("tcp(%s:3306)", HOST)
-)
-
-func sqlConnect(project string) (database *gorm.DB, err error) {
-
+	PROTOCOL := fmt.Sprintf("tcp(%s:3306)", p.dbhost)
 	PARAMS := "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
-	CONNECT := DBUSER + ":" + DBPASS + "@" + PROTOCOL + "/" + DBNAME + PARAMS
+	CONNECT := p.dbuser + ":" + p.dbpass + "@" + PROTOCOL + "/" + p.dbname + PARAMS
 	return gorm.Open(mysql.Open(CONNECT), &gorm.Config{})
 }
 

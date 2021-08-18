@@ -8,6 +8,7 @@ import (
 	"time"
 	pb "urlmap-api/pb"
 
+	"github.com/shin5ok/envorsecretm"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
@@ -17,13 +18,31 @@ type Redirection struct{}
 var dbConn *gorm.DB
 var Project = os.Getenv("PROJECT")
 
-func makeConn() *gorm.DB {
+var c = envorsecretm.Config{Project}
+
+type dbParams struct {
+	dbms   string
+	dbuser string
+	dbpass string
+	dbname string
+	dbhost string
+}
+
+var v = dbParams{
+	dbms:   "mysql",
+	dbuser: c.Get("DBUSER"),
+	dbpass: c.Get("DBPASSWORD"),
+	dbname: c.Get("DBNAME"),
+	dbhost: c.Get("DBHOST"),
+}
+
+func (v dbParams) makeConn() *gorm.DB {
 	if dbConn != nil {
 		log.Println("using a stored connection")
 		return dbConn
 	}
 	log.Println("init db connection")
-	db, err := sqlConnect(Project)
+	db, err := sqlConnect(Project, v)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -33,7 +52,7 @@ func makeConn() *gorm.DB {
 
 func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.ArrayRedirectData, error) {
 	u := user.User
-	db := makeConn()
+	db := v.makeConn()
 
 	pbResults := &pb.ArrayRedirectData{}
 	resultSlice := []*pb.RedirectData{}
@@ -71,7 +90,7 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 
 func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (*pb.OrgUrl, error) {
 	p := path.Path
-	db := makeConn()
+	db := v.makeConn()
 
 	type RedirectOrg struct {
 		Org      string
@@ -92,7 +111,7 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 }
 
 func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgUrl, error) {
-	db := makeConn()
+	db := v.makeConn()
 	redirect := Redirects{}
 	redirect.RedirectPath = r.Redirect.RedirectPath
 	redirect.User = r.Redirect.User
@@ -112,7 +131,7 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 }
 
 func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error) {
-	db := makeConn()
+	db := v.makeConn()
 	user := Users{Username: r.User, NotifyTo: r.NotifyTo}
 	db.Clauses(clause.OnConflict{
 		Columns:   []clause.Column{{Name: "username"}},
