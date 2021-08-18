@@ -15,7 +15,7 @@ steps:
       cd working.$SHORT_SHA/urlmap-api && \
       git checkout stage && git merge template
       sed -e "s/SHORT_SHA/${SHORT_SHA}/" deployment.yaml.tpl | sed -e "s/PROJECT_ID/${PROJECT_ID}/" > deployment.yaml
-      git add .
+      git add ./deployment.yaml
       git config --global user.email shingo.test@55mp.com
       git config --global user.name shingo
       git commit -va -m "Update by GitOps"
