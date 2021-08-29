@@ -12,4 +12,5 @@ FROM golang as main
 # FROM scratch as main
 ENV TZ Asia/Tokyo
 COPY --from=builder /go/bin/main /main
+USER nobody
 CMD ["/main"]
