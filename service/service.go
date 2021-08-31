@@ -9,6 +9,7 @@ import (
 	pb "urlmap-api/pb"
 
 	"github.com/shin5ok/envorsecretm"
+	"google.golang.org/protobuf/types/known/emptypb"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
@@ -138,4 +139,17 @@ func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error)
 		DoUpdates: clause.Assignments(map[string]interface{}{"username": r.User, "notify_to": r.NotifyTo}),
 	}).Create(&user)
 	return &pb.User{User: user.Username, NotifyTo: user.NotifyTo}, nil
+}
+
+func (s *Redirection) RemoveUser(ctx context.Context, r *pb.User) (*emptypb.Empty, error) {
+	db := v.makeConn()
+	redirect := Redirects{}
+	redirect.User = r.User
+	status := db.Delete(&redirect)
+	if status.Error != nil {
+		log.Printf("%+v", redirect)
+		log.Println(status.Error)
+		return nil, status.Error
+	}
+	return nil, nil
 }
