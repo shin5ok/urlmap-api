@@ -16,7 +16,7 @@ import (
 func main() {
 	host := flag.String("host", "localhost:8080", "host you want to connect")
 	path := flag.String("path", "", "redirect path")
-	mode := flag.String("mode", "get", "set or get")
+	mode := flag.String("mode", "get", "set or get or or createuser or deleteuser")
 	user := flag.String("user", "", "info data")
 	notify := flag.String("notify", "", "notify to")
 	org := flag.String("org", "", "org url")
@@ -61,7 +61,7 @@ func main() {
 			j, _ := json.MarshalIndent(res, "", " ")
 			fmt.Println(string(j))
 		}
-	} else if *mode == "setuser" {
+	} else if *mode == "createuser" {
 		u := &pb.User{User: *user, NotifyTo: *notify}
 
 		if res, err := client.SetUser(context.TODO(), u); err != nil {
@@ -70,8 +70,15 @@ func main() {
 			j, _ := json.MarshalIndent(res, "", " ")
 			fmt.Println(string(j))
 		}
+	} else if *mode == "deleteuser" {
+		u := &pb.User{User: *user}
 
-	} else {
+		if res, err := client.RemoveUser(context.TODO(), u); err != nil {
+			log.Printf("%+v\n", err)
+		} else {
+			fmt.Println(res)
+		}
+	} else if *mode == "get" {
 		path := &pb.RedirectPath{Path: *path}
 
 		if res, err := client.GetOrgByPath(context.TODO(), path); err != nil {
@@ -79,5 +86,7 @@ func main() {
 		} else {
 			fmt.Println(res)
 		}
+	} else {
+		fmt.Println("Invalid options")
 	}
 }
