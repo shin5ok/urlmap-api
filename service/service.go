@@ -61,7 +61,7 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 	// from ./gormdb.go as the same package
 	var results []Redirects
 	// Field name in where args should be actual column name, not struct field
-	status := db.Where("user = ?", u).Find(&results)
+	status := db.Debug().Where("user = ?", u).Find(&results)
 	if status.Error != nil {
 		log.Println(status.Error)
 		return &pb.ArrayRedirectData{}, status.Error
@@ -99,7 +99,7 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 	}
 	var result RedirectOrg
 	// Field name in where args should be actual column name, not struct field
-	status := db.Table("redirects").Select("redirects.org, users.notify_to").Joins("join users on redirects.user = users.username").Where("redirect_path = ?", p).Scan(&result)
+	status := db.Table("redirects").Debug().Select("redirects.org, users.notify_to").Joins("join users on redirects.user = users.username").Where("redirect_path = ?", p).Scan(&result)
 
 	if status.Error != nil {
 		log.Println(status.Error)
@@ -121,7 +121,7 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 	redirect.Active = 1
 	t := time.Now()
 	redirect.BeginAt = &t
-	status := db.Create(&redirect)
+	status := db.Debug().Create(&redirect)
 	if status.Error != nil {
 		log.Printf("%+v", redirect)
 		log.Println(status.Error)
