@@ -134,7 +134,7 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error) {
 	db := v.makeConn()
 	user := Users{Username: r.User, NotifyTo: r.NotifyTo}
-	db.Clauses(clause.OnConflict{
+	db.Debug().Clauses(clause.OnConflict{
 		Columns:   []clause.Column{{Name: "username"}},
 		DoUpdates: clause.Assignments(map[string]interface{}{"username": r.User, "notify_to": r.NotifyTo}),
 	}).Create(&user)
@@ -143,13 +143,7 @@ func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error)
 
 func (s *Redirection) RemoveUser(ctx context.Context, r *pb.User) (*emptypb.Empty, error) {
 	db := v.makeConn()
-	redirect := Redirects{}
-	redirect.User = r.User
-	status := db.Delete(&redirect)
-	if status.Error != nil {
-		log.Printf("%+v", redirect)
-		log.Println(status.Error)
-		return nil, status.Error
-	}
-	return nil, nil
+	user := Users{}
+	db.Debug().Where("UserName = ?", r.User).Delete(&user)
+	return &emptypb.Empty{}, nil
 }
