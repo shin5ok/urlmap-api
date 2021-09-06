@@ -99,7 +99,11 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 	}
 	var result RedirectOrg
 	// Field name in where args should be actual column name, not struct field
-	status := db.Table("redirects").Debug().Select("redirects.org, users.notify_to").Joins("join users on redirects.user = users.username").Where("redirect_path = ?", p).Scan(&result)
+	status := db.Table("redirects").Debug().
+		Select("redirects.org, users.notify_to").
+		Joins("join users on redirects.user = users.username").
+		Where("redirect_path = ?", p).
+		Scan(&result)
 
 	if status.Error != nil {
 		log.Println(status.Error)
@@ -144,6 +148,8 @@ func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error)
 func (s *Redirection) RemoveUser(ctx context.Context, r *pb.User) (*emptypb.Empty, error) {
 	db := v.makeConn()
 	user := Users{}
-	db.Debug().Where("UserName = ?", r.User).Delete(&user)
+	db.Debug().
+		Where("UserName = ?", r.User).
+		Delete(&user)
 	return &emptypb.Empty{}, nil
 }
