@@ -8,6 +8,7 @@ import (
 	"time"
 	pb "urlmap-api/pb"
 
+	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"github.com/shin5ok/envorsecretm"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"gorm.io/gorm"
@@ -84,6 +85,8 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 			},
 		})
 	}
+
+	grpc_ctxtags.Extract(ctx).Set("info", resultSlice)
 
 	pbResults.Redirects = resultSlice
 	return pbResults, nil
