@@ -10,7 +10,13 @@ import (
 
 	_ "time/tzdata"
 
+	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
+	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/reflection"
 )
 
@@ -25,7 +31,19 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	server := grpc.NewServer()
+
+	zap, _ := zap.NewProduction()
+	zap_opt := grpc_zap.WithLevels(
+		func(c codes.Code) zapcore.Level {
+			return zapcore.InfoLevel
+		},
+	)
+	server := grpc.NewServer(
+		grpc_middleware.WithUnaryServerChain(
+			grpc_ctxtags.UnaryServerInterceptor(),
+			grpc_zap.UnaryServerInterceptor(zap, zap_opt),
+		),
+	)
 
 	service := &service.Redirection{}
 	// service name is 'Redirection' that was defined in pb
