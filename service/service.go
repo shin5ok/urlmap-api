@@ -113,6 +113,7 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 		return &pb.OrgUrl{}, status.Error
 	}
 	fmt.Println(result)
+	grpc_ctxtags.Extract(ctx).Set("result", result)
 
 	return &pb.OrgUrl{Org: result.Org, NotifyTo: result.NotifyTo}, nil
 
