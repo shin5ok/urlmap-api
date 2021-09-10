@@ -86,7 +86,7 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 		})
 	}
 
-	grpc_ctxtags.Extract(ctx).Set("info", resultSlice)
+	grpc_ctxtags.Extract(ctx).Set("results", resultSlice)
 
 	pbResults.Redirects = resultSlice
 	return pbResults, nil
