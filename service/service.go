@@ -15,13 +15,6 @@ import (
 	"gorm.io/gorm/clause"
 )
 
-type Redirection struct{}
-
-var dbConn *gorm.DB
-var Project = os.Getenv("PROJECT")
-
-var c = envorsecretm.Config{Project}
-
 type dbParams struct {
 	dbms   string
 	dbuser string
@@ -29,6 +22,12 @@ type dbParams struct {
 	dbname string
 	dbhost string
 }
+
+type Redirection struct{}
+
+var dbConn *gorm.DB
+var Project = os.Getenv("PROJECT")
+var c = envorsecretm.Config{Project}
 
 var v = dbParams{
 	dbms:   "mysql",
