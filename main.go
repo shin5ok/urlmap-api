@@ -27,7 +27,7 @@ func main() {
 	if port == "" {
 		port = "8080"
 	}
-	listenPort, err := net.Listen("tcp", ":"+port)
+	listenPort, err := net.Listen("tcp", fmt.Sprintf(":%v", port))
 	if err != nil {
 		log.Fatalln(err)
 	}
