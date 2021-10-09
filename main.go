@@ -33,9 +33,20 @@ func main() {
 	}
 
 	zap, _ := zap.NewProduction()
-	zap_opt := grpc_zap.WithLevels(
+	zap_opt := grpc_zap.WithLevels( // --- ②
 		func(c codes.Code) zapcore.Level {
-			return zapcore.InfoLevel
+			var l zapcore.Level
+			switch c {
+			case codes.OK:
+				l = zapcore.InfoLevel
+
+			case codes.Internal:
+				l = zapcore.ErrorLevel
+
+			default:
+				l = zapcore.DebugLevel
+			}
+			return l
 		},
 	)
 	server := grpc.NewServer(
