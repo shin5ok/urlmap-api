@@ -33,7 +33,7 @@ func main() {
 	}
 
 	zap, _ := zap.NewProduction()
-	zap_opt := grpc_zap.WithLevels( // --- ②
+	zap_opt := grpc_zap.WithLevels(
 		func(c codes.Code) zapcore.Level {
 			var l zapcore.Level
 			switch c {
