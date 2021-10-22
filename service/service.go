@@ -156,3 +156,8 @@ func (s *Redirection) RemoveUser(ctx context.Context, r *pb.User) (*emptypb.Empt
 		Delete(&user)
 	return &emptypb.Empty{}, nil
 }
+
+func (s *Redirection) ListUsers(ctx context.Context) ([]*pb.User, error) {
+	users := []*pb.User{}
+	return users, nil
+}
