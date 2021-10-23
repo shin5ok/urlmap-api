@@ -163,6 +163,7 @@ func (s *Redirection) ListUsers(ctx context.Context, empty *emptypb.Empty) (*pb.
 	db := v.makeConn()
 	db.Table("users").
 		Debug().
+		// userlist has 'User' but table has 'username', so need to use 'as' SQL sentence
 		Select("username as user", "notify_to").
 		Scan(&userlist)
 	log.Println(userlist)
