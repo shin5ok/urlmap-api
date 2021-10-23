@@ -157,7 +157,15 @@ func (s *Redirection) RemoveUser(ctx context.Context, r *pb.User) (*emptypb.Empt
 	return &emptypb.Empty{}, nil
 }
 
-func (s *Redirection) ListUsers(ctx context.Context) ([]*pb.User, error) {
-	users := []*pb.User{}
+func (s *Redirection) ListUsers(ctx context.Context, empty *emptypb.Empty) (*pb.Users, error) {
+	users := &pb.Users{}
+	userlist := []*pb.User{}
+	db := v.makeConn()
+	db.Table("users").
+		Debug().
+		Select("username").
+		Scan(&userlist)
+	users.Users = userlist
+
 	return users, nil
 }
