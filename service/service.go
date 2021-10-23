@@ -158,13 +158,14 @@ func (s *Redirection) RemoveUser(ctx context.Context, r *pb.User) (*emptypb.Empt
 }
 
 func (s *Redirection) ListUsers(ctx context.Context, empty *emptypb.Empty) (*pb.Users, error) {
+	var userlist []*pb.User
 	users := &pb.Users{}
-	userlist := []*pb.User{}
 	db := v.makeConn()
 	db.Table("users").
 		Debug().
-		Select("username").
+		Select("username as user", "notify_to").
 		Scan(&userlist)
+	log.Println(userlist)
 	users.Users = userlist
 
 	return users, nil
