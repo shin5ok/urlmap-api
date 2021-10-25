@@ -95,14 +95,10 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 	p := path.Path
 	db := v.makeConn()
 
-	type RedirectOrg struct {
-		Org      string
-		NotifyTo string
-	}
-	var result RedirectOrg
+	var result pb.OrgUrl
 	// Field name in where args should be actual column name, not struct field
 	status := db.Table("redirects").Debug().
-		Select("redirects.org, users.notify_to").
+		Select("redirects.org as Org , users.notify_to as NotifyTo").
 		Joins("join users on redirects.user = users.username").
 		Where("redirect_path = ?", p).
 		Scan(&result)
