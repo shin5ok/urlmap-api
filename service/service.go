@@ -157,13 +157,18 @@ func (s *Redirection) ListUsers(ctx context.Context, empty *emptypb.Empty) (*pb.
 	var userlist []*pb.User
 	users := &pb.Users{}
 	db := v.makeConn()
-	db.Table("users").
+	status := db.Table("users").
 		Debug().
 		// userlist has 'User' but table has 'username', so need to use 'as' SQL sentence
 		Select("username as user", "notify_to").
 		Scan(&userlist)
 	log.Println(userlist)
 	users.Users = userlist
+
+	if status.Error != nil {
+		log.Println(status.Error)
+		return &pb.Users{}, status.Error
+	}
 
 	return users, nil
 }
