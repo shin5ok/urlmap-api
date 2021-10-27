@@ -21,7 +21,7 @@ import (
 )
 
 var port string = os.Getenv("PORT")
-var version string = "1.06"
+var version string = "1.10"
 
 func main() {
 	if port == "" {
