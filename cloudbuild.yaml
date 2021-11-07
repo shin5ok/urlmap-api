@@ -1,6 +1,7 @@
 steps:
 - name: 'gcr.io/kaniko-project/executor'
   args: ['--destination=us-central1-docker.pkg.dev/$PROJECT_ID/myrepo/urlmap-api:$SHORT_SHA', '--cache=true', '--cache-ttl=24h']
+
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Create manifest
   entrypoint: /bin/sh
@@ -9,12 +10,14 @@ steps:
     - |
       git config --global user.email shingo.test@55mp.com
       git config --global user.name shingo
-      git clone https://$$TOKEN@github.com/shin5ok/gitops-urlmap working.$SHORT_SHA && \
-      cd working.$SHORT_SHA/urlmap-api && \
+      git clone https://$$TOKEN@github.com/shin5ok/gitops-urlmap working.$SHORT_SHA
+      cd working.$SHORT_SHA
       git checkout stage && git merge origin/template -m Merge_from_template
+      cd urlmap-api/base
       sed -e "s/SHORT_SHA/${SHORT_SHA}/" deployment.yaml.tpl | sed -e "s/PROJECT_ID/${PROJECT_ID}/" > deployment.yaml
-      git add ./deployment.yaml
-      git commit -va -m "Update_by_GitOps"
+      ls -l
+      git add .
+      git commit -va -m "Update by GitOps"
       git push origin stage
       cat deployment.yaml
   secretEnv: ['TOKEN']
