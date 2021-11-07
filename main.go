@@ -21,7 +21,7 @@ import (
 )
 
 var port string = os.Getenv("PORT")
-var version string = "1.92"
+var version string = "0.12"
 
 func main() {
 	log.Printf("Version: %s is Starting...\n", version)
