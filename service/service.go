@@ -27,7 +27,7 @@ type Redirection struct{}
 
 var dbConn *gorm.DB
 var Project = os.Getenv("PROJECT")
-var c = envorsecretm.Config{Project}
+var c = envorsecretm.Config{ProjectId: Project}
 
 var v = dbParams{
 	dbms:   "mysql",
