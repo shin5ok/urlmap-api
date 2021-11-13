@@ -32,7 +32,7 @@ var c = envorsecretm.Config{ProjectId: Project}
 var v = dbParams{
 	dbms:   "mysql",
 	dbuser: c.Get("DBUSER"),
-	dbpass: c.Get("DBPASSWORD"),
+	dbpass: c.Get("DBPASS"),
 	dbname: c.Get("DBNAME"),
 	dbhost: c.Get("DBHOST"),
 }
