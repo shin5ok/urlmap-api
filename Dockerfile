@@ -1,4 +1,4 @@
-FROM golang:1.16.6 as builder
+FROM golang:1.16 as builder
 ENV ROOT /go/src/urlmap-api
 WORKDIR ${ROOT}
 COPY go.mod go.sum ./
@@ -8,7 +8,7 @@ COPY pb/ ./pb/
 COPY main.go ./
 RUN CGO_ENABLED=0 GOOS=linux go build -o /go/bin/main
 
-FROM golang as main
+FROM golang:1.16 as main
 # FROM scratch as main
 ENV TZ Asia/Tokyo
 COPY --from=builder /go/bin/main /main
