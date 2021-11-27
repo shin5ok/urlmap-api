@@ -24,7 +24,7 @@ var port string = os.Getenv("PORT")
 var version string = "0.12"
 
 func main() {
-	log.Printf("Version: %s is Starting...\n", version)
+	log.Printf("Version of %s is Starting...\n", version)
 	if port == "" {
 		port = "8080"
 	}
