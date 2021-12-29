@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net"
 	"os"
 	pb "urlmap-api/pb"
@@ -13,6 +12,7 @@ import (
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
+	"github.com/rs/zerolog/log"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"google.golang.org/grpc"
@@ -24,13 +24,13 @@ var port string = os.Getenv("PORT")
 var version string = "20211216"
 
 func main() {
-	log.Printf("Version of %s is Starting...\n", version)
+	log.Info().Msg(fmt.Sprintf("Version of %s is Starting...\n", version))
 	if port == "" {
 		port = "8080"
 	}
 	listenPort, err := net.Listen("tcp", fmt.Sprintf(":%v", port))
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatal().Msg(err.Error())
 	}
 
 	zap, _ := zap.NewProduction()
