@@ -3,12 +3,12 @@ package service
 import (
 	"context"
 	"fmt"
-	"log"
 	"os"
 	"time"
 	pb "urlmap-api/pb"
 
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
+	log "github.com/rs/zerolog/log"
 	"github.com/shin5ok/envorsecretm"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"gorm.io/gorm"
@@ -39,13 +39,13 @@ var v = dbParams{
 
 func (v dbParams) makeConn() *gorm.DB {
 	if dbConn != nil {
-		log.Println("using a stored connection")
+		log.Info().Msg("using a stored connection")
 		return dbConn
 	}
-	log.Println("init db connection")
+	log.Info().Msg("init db connection")
 	db, err := sqlConnect(Project, v)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal().Err(err)
 	}
 	dbConn = db
 	return db
@@ -63,12 +63,12 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 	// Field name in where args should be actual column name, not struct field
 	status := db.Debug().Where("user = ?", u).Find(&results)
 	if status.Error != nil {
-		log.Println(status.Error)
+		log.Error().Err(status.Error)
 		return &pb.ArrayRedirectData{}, status.Error
 	}
 
 	if status.RowsAffected == 0 {
-		log.Println("0 rows returned")
+		log.Info().Msg("0 rows returned")
 		return &pb.ArrayRedirectData{}, status.Error
 	}
 
@@ -104,7 +104,7 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 		Scan(&result)
 
 	if status.Error != nil {
-		log.Println(status.Error)
+		log.Error().Err(status.Error)
 		return &pb.OrgUrl{}, status.Error
 	}
 	fmt.Println(result)
@@ -126,8 +126,8 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 	redirect.BeginAt = &t
 	status := db.Debug().Create(&redirect)
 	if status.Error != nil {
-		log.Printf("%+v", redirect)
-		log.Println(status.Error)
+		log.Error().Msgf("%+v", redirect)
+		log.Error().Err(status.Error)
 		return &pb.OrgUrl{}, status.Error
 	}
 	org := &pb.OrgUrl{Org: r.Redirect.Org}
@@ -162,11 +162,11 @@ func (s *Redirection) ListUsers(ctx context.Context, empty *emptypb.Empty) (*pb.
 		// userlist has 'User' but table has 'username', so need to use 'as' SQL sentence
 		Select("username as user", "notify_to").
 		Scan(&userlist)
-	log.Println(userlist)
+	log.Info().Msgf("%+v", userlist)
 	users.Users = userlist
 
 	if status.Error != nil {
-		log.Println(status.Error)
+		log.Error().Err(status.Error)
 		return &pb.Users{}, status.Error
 	}
 
