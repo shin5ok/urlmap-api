@@ -9,19 +9,15 @@ import (
 
 	_ "time/tzdata"
 
-	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
-	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
-	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
+	"github.com/pereslava/grpc_zerolog"
+	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/reflection"
 )
 
 var port string = os.Getenv("PORT")
-var version string = "20211216"
+var version string = "20210102"
 
 func main() {
 	log.Info().Msg(fmt.Sprintf("Version of %s is Starting...\n", version))
@@ -32,28 +28,19 @@ func main() {
 	if err != nil {
 		log.Fatal().Msg(err.Error())
 	}
+	// logger for gRPC to zerolog
+	// https://pkg.go.dev/github.com/pereslava/grpc_zerolog#section-readme
+	serverLogger := log.Level(zerolog.TraceLevel)
+	grpc_zerolog.ReplaceGrpcLogger(zerolog.New(os.Stderr).Level(zerolog.ErrorLevel))
 
-	zap, _ := zap.NewProduction()
-	zap_opt := grpc_zap.WithLevels(
-		func(c codes.Code) zapcore.Level {
-			var l zapcore.Level
-			switch c {
-			case codes.OK:
-				l = zapcore.InfoLevel
-
-			case codes.Internal:
-				l = zapcore.ErrorLevel
-
-			default:
-				l = zapcore.DebugLevel
-			}
-			return l
-		},
-	)
 	server := grpc.NewServer(
-		grpc_middleware.WithUnaryServerChain(
-			grpc_ctxtags.UnaryServerInterceptor(),
-			grpc_zap.UnaryServerInterceptor(zap, zap_opt),
+		grpc.ChainUnaryInterceptor(
+			grpc_zerolog.NewPayloadUnaryServerInterceptor(serverLogger),
+			grpc_zerolog.NewPayloadUnaryServerInterceptor(serverLogger),
+		),
+		grpc.ChainStreamInterceptor(
+			grpc_zerolog.NewPayloadStreamServerInterceptor(serverLogger),
+			grpc_zerolog.NewStreamServerInterceptor(serverLogger),
 		),
 	)
 
