@@ -6,4 +6,5 @@ sleep 1
 #    - metadata.annotations.iam.gke.io/gcp-service-account
 #    - metadata.name
 
-helm --kube-context=stage-urlmap install -f helm-external-secrets.yaml external-secrets external-secrets/kubernetes-external-secrets
+# helm --kube-context=stage-urlmap install -f helm-external-secrets.yaml external-secrets external-secrets/kubernetes-external-secrets
+helm install -f helm-external-secrets.yaml external-secrets external-secrets/kubernetes-external-secrets
