@@ -31,10 +31,10 @@ var c = envorsecretm.Config{ProjectId: Project}
 
 var v = dbParams{
 	dbms:   "mysql",
-	dbuser: c.Get("DBUSER"),
-	dbpass: c.Get("DBPASS"),
-	dbname: c.Get("DBNAME"),
-	dbhost: c.Get("DBHOST"),
+	dbuser: os.Getenv("DBUSER"),
+	dbpass: os.Getenv("DBPASS"),
+	dbname: os.Getenv("DBNAME"),
+	dbhost: os.Getenv("DBHOST"),
 }
 
 func (v dbParams) makeConn() *gorm.DB {
