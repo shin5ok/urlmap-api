@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"time"
 	pb "urlmap-api/pb"
 	"urlmap-api/service"
 
@@ -17,7 +18,14 @@ import (
 )
 
 var port string = os.Getenv("PORT")
-var version string = "2021010200"
+var version string = "2022011600"
+
+func init() {
+	log.Logger = zerolog.New(os.Stderr).With().Timestamp().Logger()
+	zerolog.LevelFieldName = "severity"
+	zerolog.TimestampFieldName = "timestamp"
+	zerolog.TimeFieldFormat = time.RFC3339Nano
+}
 
 func main() {
 	log.Info().Msg(fmt.Sprintf("Version of %s is Starting...\n", version))
