@@ -10,7 +10,6 @@ import (
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"github.com/rs/zerolog"
 	log "github.com/rs/zerolog/log"
-	"github.com/shin5ok/envorsecretm"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
@@ -28,7 +27,6 @@ type Redirection struct{}
 
 var dbConn *gorm.DB
 var Project = os.Getenv("PROJECT")
-var c = envorsecretm.Config{ProjectId: Project}
 
 var v = dbParams{
 	dbms:   "mysql",
