@@ -8,6 +8,7 @@ import (
 	pb "urlmap-api/pb"
 
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
+	"github.com/rs/zerolog"
 	log "github.com/rs/zerolog/log"
 	"github.com/shin5ok/envorsecretm"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -35,6 +36,13 @@ var v = dbParams{
 	dbpass: os.Getenv("DBPASS"),
 	dbname: os.Getenv("DBNAME"),
 	dbhost: os.Getenv("DBHOST"),
+}
+
+func init() {
+	log.Logger = zerolog.New(os.Stderr).With().Timestamp().Logger()
+	zerolog.LevelFieldName = "severity"
+	zerolog.TimestampFieldName = "timestamp"
+	zerolog.TimeFieldFormat = time.RFC3339Nano
 }
 
 func (v dbParams) makeConn() *gorm.DB {
