@@ -104,7 +104,7 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 	var result pb.OrgUrl
 	// Field name in where args should be actual column name, not struct field
 	status := db.Table("redirects").Debug().
-		Select("redirects.org as Org , users.notify_to as NotifyTo").
+		Select("redirects.org as Org , users.notify_to as NotifyTo , users.slack_url as SlackUrl, users.email as Email").
 		Joins("join users on redirects.user = users.username").
 		Where("redirect_path = ?", p).
 		Scan(&result)
@@ -116,7 +116,8 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 	fmt.Println(result)
 	grpc_ctxtags.Extract(ctx).Set("result", result)
 
-	return &pb.OrgUrl{Org: result.Org, NotifyTo: result.NotifyTo}, nil
+	// return &pb.OrgUrl{Org: result.Org, NotifyTo: result.NotifyTo}, nil
+	return &result, nil
 
 }
 
