@@ -1,7 +1,9 @@
 create table if not exists `users`
 (
     `username` varchar(64) PRIMARY KEY,
-    `notify_to` varchar(128)
+    `notify_to` varchar(128),
+    `slack_url` varchar(255),
+    `email`   varchar(128)
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 create table IF not exists `redirects`
