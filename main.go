@@ -57,6 +57,6 @@ func main() {
 	// service name is 'Redirection' that was defined in pb
 	pb.RegisterRedirectionServer(server, service)
 	reflection.Register(server)
-	fmt.Printf("Listening on %s\n", port)
+	serverLogger.Info().Msgf("Listening on %s\n", port)
 	server.Serve(listenPort)
 }
