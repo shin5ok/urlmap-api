@@ -44,13 +44,13 @@ func main() {
 		),
 	)
 
-	log.Info().Msgf("Version of %s is Starting...\n", version)
+	serverLogger.Info().Msgf("Version of %s is Starting...\n", version)
 	if port == "" {
 		port = "8080"
 	}
 	listenPort, err := net.Listen("tcp", fmt.Sprintf(":%v", port))
 	if err != nil {
-		log.Fatal().Msg(err.Error())
+		serverLogger.Fatal().Msg(err.Error())
 	}
 
 	service := &service.Redirection{}
