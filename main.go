@@ -28,14 +28,6 @@ func init() {
 }
 
 func main() {
-	log.Info().Msg(fmt.Sprintf("Version of %s is Starting...\n", version))
-	if port == "" {
-		port = "8080"
-	}
-	listenPort, err := net.Listen("tcp", fmt.Sprintf(":%v", port))
-	if err != nil {
-		log.Fatal().Msg(err.Error())
-	}
 	// logger for gRPC to zerolog
 	// https://pkg.go.dev/github.com/pereslava/grpc_zerolog#section-readme
 	serverLogger := log.Level(zerolog.TraceLevel)
@@ -51,6 +43,15 @@ func main() {
 			grpc_zerolog.NewStreamServerInterceptor(serverLogger),
 		),
 	)
+
+	log.Info().Msgf("Version of %s is Starting...\n", version)
+	if port == "" {
+		port = "8080"
+	}
+	listenPort, err := net.Listen("tcp", fmt.Sprintf(":%v", port))
+	if err != nil {
+		log.Fatal().Msg(err.Error())
+	}
 
 	service := &service.Redirection{}
 	// service name is 'Redirection' that was defined in pb
