@@ -30,58 +30,6 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-type HealthCheckResponse_ServingStatus int32
-
-const (
-	HealthCheckResponse_UNKNOWN         HealthCheckResponse_ServingStatus = 0
-	HealthCheckResponse_SERVING         HealthCheckResponse_ServingStatus = 1
-	HealthCheckResponse_NOT_SERVING     HealthCheckResponse_ServingStatus = 2
-	HealthCheckResponse_SERVICE_UNKNOWN HealthCheckResponse_ServingStatus = 3 // Used only by the Watch method.
-)
-
-// Enum value maps for HealthCheckResponse_ServingStatus.
-var (
-	HealthCheckResponse_ServingStatus_name = map[int32]string{
-		0: "UNKNOWN",
-		1: "SERVING",
-		2: "NOT_SERVING",
-		3: "SERVICE_UNKNOWN",
-	}
-	HealthCheckResponse_ServingStatus_value = map[string]int32{
-		"UNKNOWN":         0,
-		"SERVING":         1,
-		"NOT_SERVING":     2,
-		"SERVICE_UNKNOWN": 3,
-	}
-)
-
-func (x HealthCheckResponse_ServingStatus) Enum() *HealthCheckResponse_ServingStatus {
-	p := new(HealthCheckResponse_ServingStatus)
-	*p = x
-	return p
-}
-
-func (x HealthCheckResponse_ServingStatus) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (HealthCheckResponse_ServingStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_urlmap_proto_enumTypes[0].Descriptor()
-}
-
-func (HealthCheckResponse_ServingStatus) Type() protoreflect.EnumType {
-	return &file_urlmap_proto_enumTypes[0]
-}
-
-func (x HealthCheckResponse_ServingStatus) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use HealthCheckResponse_ServingStatus.Descriptor instead.
-func (HealthCheckResponse_ServingStatus) EnumDescriptor() ([]byte, []int) {
-	return file_urlmap_proto_rawDescGZIP(), []int{8, 0}
-}
-
 type RedirectPath struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -507,101 +455,6 @@ func (x *Users) GetUsers() []*User {
 	return nil
 }
 
-// option go_package = "google.golang.org/grpc/health/grpc_health_v1";
-type HealthCheckRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Service string `protobuf:"bytes,1,opt,name=service,proto3" json:"service,omitempty"`
-}
-
-func (x *HealthCheckRequest) Reset() {
-	*x = HealthCheckRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_urlmap_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *HealthCheckRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*HealthCheckRequest) ProtoMessage() {}
-
-func (x *HealthCheckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_urlmap_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use HealthCheckRequest.ProtoReflect.Descriptor instead.
-func (*HealthCheckRequest) Descriptor() ([]byte, []int) {
-	return file_urlmap_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *HealthCheckRequest) GetService() string {
-	if x != nil {
-		return x.Service
-	}
-	return ""
-}
-
-type HealthCheckResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Status HealthCheckResponse_ServingStatus `protobuf:"varint,1,opt,name=status,proto3,enum=urlmap.HealthCheckResponse_ServingStatus" json:"status,omitempty"`
-}
-
-func (x *HealthCheckResponse) Reset() {
-	*x = HealthCheckResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_urlmap_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *HealthCheckResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*HealthCheckResponse) ProtoMessage() {}
-
-func (x *HealthCheckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_urlmap_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use HealthCheckResponse.ProtoReflect.Descriptor instead.
-func (*HealthCheckResponse) Descriptor() ([]byte, []int) {
-	return file_urlmap_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *HealthCheckResponse) GetStatus() HealthCheckResponse_ServingStatus {
-	if x != nil {
-		return x.Status
-	}
-	return HealthCheckResponse_UNKNOWN
-}
-
 type RedirectData_ValidDate struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -614,7 +467,7 @@ type RedirectData_ValidDate struct {
 func (x *RedirectData_ValidDate) Reset() {
 	*x = RedirectData_ValidDate{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_urlmap_proto_msgTypes[9]
+		mi := &file_urlmap_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -627,7 +480,7 @@ func (x *RedirectData_ValidDate) String() string {
 func (*RedirectData_ValidDate) ProtoMessage() {}
 
 func (x *RedirectData_ValidDate) ProtoReflect() protoreflect.Message {
-	mi := &file_urlmap_proto_msgTypes[9]
+	mi := &file_urlmap_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -705,50 +558,28 @@ var file_urlmap_proto_rawDesc = []byte{
 	0x06, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x22, 0x2b, 0x0a,
 	0x05, 0x55, 0x73, 0x65, 0x72, 0x73, 0x12, 0x22, 0x0a, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x18,
 	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55,
-	0x73, 0x65, 0x72, 0x52, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x22, 0x2e, 0x0a, 0x12, 0x48, 0x65,
-	0x61, 0x6c, 0x74, 0x68, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x12, 0x18, 0x0a, 0x07, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x07, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x22, 0xa9, 0x01, 0x0a, 0x13, 0x48,
-	0x65, 0x61, 0x6c, 0x74, 0x68, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x41, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0e, 0x32, 0x29, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x48, 0x65, 0x61, 0x6c,
-	0x74, 0x68, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73,
-	0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x4f, 0x0a, 0x0d, 0x53, 0x65, 0x72, 0x76, 0x69, 0x6e, 0x67,
-	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x0b, 0x0a, 0x07, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57,
-	0x4e, 0x10, 0x00, 0x12, 0x0b, 0x0a, 0x07, 0x53, 0x45, 0x52, 0x56, 0x49, 0x4e, 0x47, 0x10, 0x01,
-	0x12, 0x0f, 0x0a, 0x0b, 0x4e, 0x4f, 0x54, 0x5f, 0x53, 0x45, 0x52, 0x56, 0x49, 0x4e, 0x47, 0x10,
-	0x02, 0x12, 0x13, 0x0a, 0x0f, 0x53, 0x45, 0x52, 0x56, 0x49, 0x43, 0x45, 0x5f, 0x55, 0x4e, 0x4b,
-	0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x03, 0x32, 0xbd, 0x02, 0x0a, 0x0b, 0x52, 0x65, 0x64, 0x69, 0x72,
-	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x34, 0x0a, 0x0c, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x67,
-	0x42, 0x79, 0x50, 0x61, 0x74, 0x68, 0x12, 0x14, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e,
-	0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x50, 0x61, 0x74, 0x68, 0x1a, 0x0e, 0x2e, 0x75,
-	0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x4f, 0x72, 0x67, 0x55, 0x72, 0x6c, 0x12, 0x38, 0x0a, 0x0d,
-	0x47, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x12, 0x0c, 0x2e,
-	0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x1a, 0x19, 0x2e, 0x75, 0x72,
-	0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x41, 0x72, 0x72, 0x61, 0x79, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65,
-	0x63, 0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x2f, 0x0a, 0x07, 0x53, 0x65, 0x74, 0x49, 0x6e, 0x66,
-	0x6f, 0x12, 0x14, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x52, 0x65, 0x64, 0x69, 0x72,
-	0x65, 0x63, 0x74, 0x44, 0x61, 0x74, 0x61, 0x1a, 0x0e, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70,
-	0x2e, 0x4f, 0x72, 0x67, 0x55, 0x72, 0x6c, 0x12, 0x25, 0x0a, 0x07, 0x53, 0x65, 0x74, 0x55, 0x73,
-	0x65, 0x72, 0x12, 0x0c, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55, 0x73, 0x65, 0x72,
-	0x1a, 0x0c, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x12, 0x32,
-	0x0a, 0x0a, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x55, 0x73, 0x65, 0x72, 0x12, 0x0c, 0x2e, 0x75,
-	0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f,
-	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70,
-	0x74, 0x79, 0x12, 0x32, 0x0a, 0x09, 0x4c, 0x69, 0x73, 0x74, 0x55, 0x73, 0x65, 0x72, 0x73, 0x12,
-	0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
-	0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0d, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70,
-	0x2e, 0x55, 0x73, 0x65, 0x72, 0x73, 0x32, 0x8e, 0x01, 0x0a, 0x06, 0x48, 0x65, 0x61, 0x6c, 0x74,
-	0x68, 0x12, 0x40, 0x0a, 0x05, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x12, 0x1a, 0x2e, 0x75, 0x72, 0x6c,
-	0x6d, 0x61, 0x70, 0x2e, 0x48, 0x65, 0x61, 0x6c, 0x74, 0x68, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e,
-	0x48, 0x65, 0x61, 0x6c, 0x74, 0x68, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x42, 0x0a, 0x05, 0x57, 0x61, 0x74, 0x63, 0x68, 0x12, 0x1a, 0x2e, 0x75,
-	0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x48, 0x65, 0x61, 0x6c, 0x74, 0x68, 0x43, 0x68, 0x65, 0x63,
-	0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61,
-	0x70, 0x2e, 0x48, 0x65, 0x61, 0x6c, 0x74, 0x68, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x30, 0x01, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x65, 0x72, 0x52, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x32, 0xbd, 0x02, 0x0a, 0x0b, 0x52,
+	0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x34, 0x0a, 0x0c, 0x47, 0x65,
+	0x74, 0x4f, 0x72, 0x67, 0x42, 0x79, 0x50, 0x61, 0x74, 0x68, 0x12, 0x14, 0x2e, 0x75, 0x72, 0x6c,
+	0x6d, 0x61, 0x70, 0x2e, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x50, 0x61, 0x74, 0x68,
+	0x1a, 0x0e, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x4f, 0x72, 0x67, 0x55, 0x72, 0x6c,
+	0x12, 0x38, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x42, 0x79, 0x55, 0x73, 0x65,
+	0x72, 0x12, 0x0c, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x1a,
+	0x19, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x41, 0x72, 0x72, 0x61, 0x79, 0x52, 0x65,
+	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x2f, 0x0a, 0x07, 0x53, 0x65,
+	0x74, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x14, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x52,
+	0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x44, 0x61, 0x74, 0x61, 0x1a, 0x0e, 0x2e, 0x75, 0x72,
+	0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x4f, 0x72, 0x67, 0x55, 0x72, 0x6c, 0x12, 0x25, 0x0a, 0x07, 0x53,
+	0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x12, 0x0c, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e,
+	0x55, 0x73, 0x65, 0x72, 0x1a, 0x0c, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55, 0x73,
+	0x65, 0x72, 0x12, 0x32, 0x0a, 0x0a, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x55, 0x73, 0x65, 0x72,
+	0x12, 0x0c, 0x2e, 0x75, 0x72, 0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x1a, 0x16,
+	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x12, 0x32, 0x0a, 0x09, 0x4c, 0x69, 0x73, 0x74, 0x55, 0x73,
+	0x65, 0x72, 0x73, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0d, 0x2e, 0x75, 0x72,
+	0x6c, 0x6d, 0x61, 0x70, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -763,48 +594,39 @@ func file_urlmap_proto_rawDescGZIP() []byte {
 	return file_urlmap_proto_rawDescData
 }
 
-var file_urlmap_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_urlmap_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_urlmap_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_urlmap_proto_goTypes = []interface{}{
-	(HealthCheckResponse_ServingStatus)(0), // 0: urlmap.HealthCheckResponse.ServingStatus
-	(*RedirectPath)(nil),                   // 1: urlmap.RedirectPath
-	(*OrgUrl)(nil),                         // 2: urlmap.OrgUrl
-	(*User)(nil),                           // 3: urlmap.User
-	(*ArrayRedirectData)(nil),              // 4: urlmap.ArrayRedirectData
-	(*RedirectData)(nil),                   // 5: urlmap.RedirectData
-	(*RedirectInfo)(nil),                   // 6: urlmap.RedirectInfo
-	(*Users)(nil),                          // 7: urlmap.Users
-	(*HealthCheckRequest)(nil),             // 8: urlmap.HealthCheckRequest
-	(*HealthCheckResponse)(nil),            // 9: urlmap.HealthCheckResponse
-	(*RedirectData_ValidDate)(nil),         // 10: urlmap.RedirectData.ValidDate
-	(*emptypb.Empty)(nil),                  // 11: google.protobuf.Empty
+	(*RedirectPath)(nil),           // 0: urlmap.RedirectPath
+	(*OrgUrl)(nil),                 // 1: urlmap.OrgUrl
+	(*User)(nil),                   // 2: urlmap.User
+	(*ArrayRedirectData)(nil),      // 3: urlmap.ArrayRedirectData
+	(*RedirectData)(nil),           // 4: urlmap.RedirectData
+	(*RedirectInfo)(nil),           // 5: urlmap.RedirectInfo
+	(*Users)(nil),                  // 6: urlmap.Users
+	(*RedirectData_ValidDate)(nil), // 7: urlmap.RedirectData.ValidDate
+	(*emptypb.Empty)(nil),          // 8: google.protobuf.Empty
 }
 var file_urlmap_proto_depIdxs = []int32{
-	5,  // 0: urlmap.ArrayRedirectData.redirects:type_name -> urlmap.RedirectData
-	6,  // 1: urlmap.RedirectData.redirect:type_name -> urlmap.RedirectInfo
-	3,  // 2: urlmap.Users.users:type_name -> urlmap.User
-	0,  // 3: urlmap.HealthCheckResponse.status:type_name -> urlmap.HealthCheckResponse.ServingStatus
-	1,  // 4: urlmap.Redirection.GetOrgByPath:input_type -> urlmap.RedirectPath
-	3,  // 5: urlmap.Redirection.GetInfoByUser:input_type -> urlmap.User
-	5,  // 6: urlmap.Redirection.SetInfo:input_type -> urlmap.RedirectData
-	3,  // 7: urlmap.Redirection.SetUser:input_type -> urlmap.User
-	3,  // 8: urlmap.Redirection.RemoveUser:input_type -> urlmap.User
-	11, // 9: urlmap.Redirection.ListUsers:input_type -> google.protobuf.Empty
-	8,  // 10: urlmap.Health.Check:input_type -> urlmap.HealthCheckRequest
-	8,  // 11: urlmap.Health.Watch:input_type -> urlmap.HealthCheckRequest
-	2,  // 12: urlmap.Redirection.GetOrgByPath:output_type -> urlmap.OrgUrl
-	4,  // 13: urlmap.Redirection.GetInfoByUser:output_type -> urlmap.ArrayRedirectData
-	2,  // 14: urlmap.Redirection.SetInfo:output_type -> urlmap.OrgUrl
-	3,  // 15: urlmap.Redirection.SetUser:output_type -> urlmap.User
-	11, // 16: urlmap.Redirection.RemoveUser:output_type -> google.protobuf.Empty
-	7,  // 17: urlmap.Redirection.ListUsers:output_type -> urlmap.Users
-	9,  // 18: urlmap.Health.Check:output_type -> urlmap.HealthCheckResponse
-	9,  // 19: urlmap.Health.Watch:output_type -> urlmap.HealthCheckResponse
-	12, // [12:20] is the sub-list for method output_type
-	4,  // [4:12] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	4, // 0: urlmap.ArrayRedirectData.redirects:type_name -> urlmap.RedirectData
+	5, // 1: urlmap.RedirectData.redirect:type_name -> urlmap.RedirectInfo
+	2, // 2: urlmap.Users.users:type_name -> urlmap.User
+	0, // 3: urlmap.Redirection.GetOrgByPath:input_type -> urlmap.RedirectPath
+	2, // 4: urlmap.Redirection.GetInfoByUser:input_type -> urlmap.User
+	4, // 5: urlmap.Redirection.SetInfo:input_type -> urlmap.RedirectData
+	2, // 6: urlmap.Redirection.SetUser:input_type -> urlmap.User
+	2, // 7: urlmap.Redirection.RemoveUser:input_type -> urlmap.User
+	8, // 8: urlmap.Redirection.ListUsers:input_type -> google.protobuf.Empty
+	1, // 9: urlmap.Redirection.GetOrgByPath:output_type -> urlmap.OrgUrl
+	3, // 10: urlmap.Redirection.GetInfoByUser:output_type -> urlmap.ArrayRedirectData
+	1, // 11: urlmap.Redirection.SetInfo:output_type -> urlmap.OrgUrl
+	2, // 12: urlmap.Redirection.SetUser:output_type -> urlmap.User
+	8, // 13: urlmap.Redirection.RemoveUser:output_type -> google.protobuf.Empty
+	6, // 14: urlmap.Redirection.ListUsers:output_type -> urlmap.Users
+	9, // [9:15] is the sub-list for method output_type
+	3, // [3:9] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_urlmap_proto_init() }
@@ -898,30 +720,6 @@ func file_urlmap_proto_init() {
 			}
 		}
 		file_urlmap_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*HealthCheckRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_urlmap_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*HealthCheckResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_urlmap_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RedirectData_ValidDate); i {
 			case 0:
 				return &v.state
@@ -939,14 +737,13 @@ func file_urlmap_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_urlmap_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   10,
+			NumEnums:      0,
+			NumMessages:   8,
 			NumExtensions: 0,
-			NumServices:   2,
+			NumServices:   1,
 		},
 		GoTypes:           file_urlmap_proto_goTypes,
 		DependencyIndexes: file_urlmap_proto_depIdxs,
-		EnumInfos:         file_urlmap_proto_enumTypes,
 		MessageInfos:      file_urlmap_proto_msgTypes,
 	}.Build()
 	File_urlmap_proto = out.File
@@ -1212,175 +1009,5 @@ var _Redirection_serviceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "urlmap.proto",
-}
-
-// HealthClient is the client API for Health service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type HealthClient interface {
-	// If the requested service is unknown, the call will fail with status
-	// NOT_FOUND.
-	Check(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error)
-	// Performs a watch for the serving status of the requested service.
-	// The server will immediately send back a message indicating the current
-	// serving status.  It will then subsequently send a new message whenever
-	// the service's serving status changes.
-	//
-	// If the requested service is unknown when the call is received, the
-	// server will send a message setting the serving status to
-	// SERVICE_UNKNOWN but will *not* terminate the call.  If at some
-	// future point, the serving status of the service becomes known, the
-	// server will send a new message with the service's serving status.
-	//
-	// If the call terminates with status UNIMPLEMENTED, then clients
-	// should assume this method is not supported and should not retry the
-	// call.  If the call terminates with any other status (including OK),
-	// clients should retry the call with appropriate exponential backoff.
-	Watch(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (Health_WatchClient, error)
-}
-
-type healthClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewHealthClient(cc grpc.ClientConnInterface) HealthClient {
-	return &healthClient{cc}
-}
-
-func (c *healthClient) Check(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error) {
-	out := new(HealthCheckResponse)
-	err := c.cc.Invoke(ctx, "/urlmap.Health/Check", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *healthClient) Watch(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (Health_WatchClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Health_serviceDesc.Streams[0], "/urlmap.Health/Watch", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &healthWatchClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type Health_WatchClient interface {
-	Recv() (*HealthCheckResponse, error)
-	grpc.ClientStream
-}
-
-type healthWatchClient struct {
-	grpc.ClientStream
-}
-
-func (x *healthWatchClient) Recv() (*HealthCheckResponse, error) {
-	m := new(HealthCheckResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-// HealthServer is the server API for Health service.
-type HealthServer interface {
-	// If the requested service is unknown, the call will fail with status
-	// NOT_FOUND.
-	Check(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error)
-	// Performs a watch for the serving status of the requested service.
-	// The server will immediately send back a message indicating the current
-	// serving status.  It will then subsequently send a new message whenever
-	// the service's serving status changes.
-	//
-	// If the requested service is unknown when the call is received, the
-	// server will send a message setting the serving status to
-	// SERVICE_UNKNOWN but will *not* terminate the call.  If at some
-	// future point, the serving status of the service becomes known, the
-	// server will send a new message with the service's serving status.
-	//
-	// If the call terminates with status UNIMPLEMENTED, then clients
-	// should assume this method is not supported and should not retry the
-	// call.  If the call terminates with any other status (including OK),
-	// clients should retry the call with appropriate exponential backoff.
-	Watch(*HealthCheckRequest, Health_WatchServer) error
-}
-
-// UnimplementedHealthServer can be embedded to have forward compatible implementations.
-type UnimplementedHealthServer struct {
-}
-
-func (*UnimplementedHealthServer) Check(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
-}
-func (*UnimplementedHealthServer) Watch(*HealthCheckRequest, Health_WatchServer) error {
-	return status.Errorf(codes.Unimplemented, "method Watch not implemented")
-}
-
-func RegisterHealthServer(s *grpc.Server, srv HealthServer) {
-	s.RegisterService(&_Health_serviceDesc, srv)
-}
-
-func _Health_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HealthCheckRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(HealthServer).Check(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/urlmap.Health/Check",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HealthServer).Check(ctx, req.(*HealthCheckRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Health_Watch_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(HealthCheckRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(HealthServer).Watch(m, &healthWatchServer{stream})
-}
-
-type Health_WatchServer interface {
-	Send(*HealthCheckResponse) error
-	grpc.ServerStream
-}
-
-type healthWatchServer struct {
-	grpc.ServerStream
-}
-
-func (x *healthWatchServer) Send(m *HealthCheckResponse) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-var _Health_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "urlmap.Health",
-	HandlerType: (*HealthServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Check",
-			Handler:    _Health_Check_Handler,
-		},
-	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "Watch",
-			Handler:       _Health_Watch_Handler,
-			ServerStreams: true,
-		},
-	},
 	Metadata: "urlmap.proto",
 }

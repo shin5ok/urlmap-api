@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"net"
 	"os"
@@ -14,11 +15,16 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	health "google.golang.org/grpc/health/grpc_health_v1"
 	"google.golang.org/grpc/reflection"
+	"google.golang.org/grpc/status"
 )
 
 var port string = os.Getenv("PORT")
 var version string = "2022011600"
+
+type healthCheck struct{}
 
 func init() {
 	log.Logger = zerolog.New(os.Stderr).With().Timestamp().Logger()
@@ -56,7 +62,21 @@ func main() {
 	service := &service.Redirection{}
 	// service name is 'Redirection' that was defined in pb
 	pb.RegisterRedirectionServer(server, service)
+
+	var h = &healthCheck{}
+	health.RegisterHealthServer(server, h)
+
 	reflection.Register(server)
 	serverLogger.Info().Msgf("Listening on %s\n", port)
 	server.Serve(listenPort)
+}
+
+func (h *healthCheck) Check(context.Context, *health.HealthCheckRequest) (*health.HealthCheckResponse, error) {
+	return &health.HealthCheckResponse{
+		Status: health.HealthCheckResponse_SERVING,
+	}, nil
+}
+
+func (h *healthCheck) Watch(*health.HealthCheckRequest, health.Health_WatchServer) error {
+	return status.Error(codes.Unimplemented, "No implementation for Watch")
 }
