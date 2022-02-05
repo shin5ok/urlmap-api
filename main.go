@@ -6,8 +6,10 @@ import (
 	"net"
 	"os"
 	"time"
-	pb "urlmap-api/pb"
-	"urlmap-api/service"
+
+	pb "github.com/shin5ok/urlmap-api/pb"
+
+	"github.com/shin5ok/urlmap-api/service"
 
 	_ "time/tzdata"
 

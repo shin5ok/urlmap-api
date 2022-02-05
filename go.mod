@@ -1,22 +1,25 @@
-module urlmap-api
+module github.com/shin5ok/urlmap-api
 
-go 1.15
+go 1.17
 
 require (
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/golang/protobuf v1.5.2
-	github.com/google/uuid v1.1.2
+	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
-	github.com/pereslava/grpc_zerolog v0.0.3 // indirect
+	github.com/pereslava/grpc_zerolog v0.0.3
 	github.com/rs/zerolog v1.26.1
-	github.com/shin5ok/envorsecretm v0.0.0-20210816133525-1d8b25560fb8
-	go.uber.org/zap v1.10.0
-	golang.org/x/net v0.0.0-20211216030914-fe4d6282115f // indirect
-	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
-	golang.org/x/text v0.3.7 // indirect
-	google.golang.org/genproto v0.0.0-20211223182754-3ac035c7e7cb // indirect
-	google.golang.org/grpc v1.43.0
+	google.golang.org/grpc v1.44.0
 	google.golang.org/protobuf v1.27.1
-	gorm.io/driver/mysql v1.1.2
-	gorm.io/gorm v1.21.12
+	gorm.io/driver/mysql v1.2.3
+	gorm.io/gorm v1.22.5
+)
+
+require (
+	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/jinzhu/now v1.1.4 // indirect
+	golang.org/x/net v0.0.0-20210805182204-aaa1db679c0d // indirect
+	golang.org/x/sys v0.0.0-20210809222454-d867a43fc93e // indirect
+	golang.org/x/text v0.3.6 // indirect
+	google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013 // indirect
 )

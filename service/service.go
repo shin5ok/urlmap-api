@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"os"
 	"time"
-	pb "urlmap-api/pb"
+
+	pb "github.com/shin5ok/urlmap-api/pb"
 
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"github.com/rs/zerolog"

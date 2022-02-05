@@ -7,7 +7,8 @@ import (
 	"fmt"
 	"log"
 	"strings"
-	pb "urlmap-api/pb"
+
+	pb "github.com/shin5ok/urlmap-api/pb"
 
 	"github.com/google/uuid"
 	"google.golang.org/grpc"
