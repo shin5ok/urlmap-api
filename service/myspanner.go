@@ -4,14 +4,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"io"
 
 	"cloud.google.com/go/spanner"
 )
 
 type spannerConfig struct {
 	db     string
-	client io.Writer
+	client *spanner.Client
 }
 
 type MyDB interface {
