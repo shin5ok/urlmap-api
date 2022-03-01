@@ -3,12 +3,16 @@ package service
 import (
 	"context"
 	"errors"
+	"fmt"
 	"io"
 
-	database "cloud.google.com/go/spanner/admin/database/apiv1"
+	"cloud.google.com/go/spanner"
 )
 
-type spanner struct{}
+type spannerConfig struct {
+	db     string
+	client io.Writer
+}
 
 type MyDB interface {
 	Put(string) error
@@ -16,40 +20,26 @@ type MyDB interface {
 	List() (*[]string, error)
 }
 
-func New() *spanner {
-	return &spanner{}
-
+func New(db string) *spannerConfig {
+	config := &spannerConfig{}
+	config.db = db
+	ctx := context.Background()
+	client, err := spanner.NewClient(ctx, db)
+	if err != nil {
+		panic(fmt.Sprintf("cannot create a spanner client: %v", err))
+	}
+	config.client = client
+	return config
 }
 
-func (s *spanner) Put() error {
+func (s *spannerConfig) Put() error {
 	return errors.New("")
 }
 
-func (s *spanner) Get() (*[]string, error) {
+func (s *spannerConfig) Get() (*[]string, error) {
 	return &[]string{}, errors.New("")
 }
 
-func (s *spanner) List() (*[]string, error) {
+func (s *spannerConfig) List() (*[]string, error) {
 	return &[]string{}, errors.New("")
-}
-
-func createClients(w io.Writer, db string) error {
-	ctx := context.Background()
-
-	adminClient, err := database.NewDatabaseAdminClient(ctx)
-	if err != nil {
-		return err
-	}
-	defer adminClient.Close()
-
-	dataClient, err := spanner.NewClient(ctx, db)
-	if err != nil {
-		return err
-	}
-	defer dataClient.Close()
-
-	_ = adminClient
-	_ = dataClient
-
-	return nil
 }
