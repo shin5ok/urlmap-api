@@ -3,12 +3,12 @@ import "google/protobuf/empty.proto";
 package urlmap;
 
 service Redirection {
-  rpc GetOrgByPath (RedirectPath) returns (OrgUrl);
-  rpc GetInfoByUser (User) returns (ArrayRedirectData);
-  rpc SetInfo (RedirectData) returns (OrgUrl);
-  rpc SetUser (User) returns (User);
-  rpc RemoveUser (User) returns (google.protobuf.Empty);
-  rpc ListUsers (google.protobuf.Empty) returns (Users);
+  rpc GetOrgByPath (RedirectPath) returns (OrgUrl) {};
+  rpc GetInfoByUser (User) returns (ArrayRedirectData) {};
+  rpc SetInfo (RedirectData) returns (OrgUrl) {};
+  rpc SetUser (User) returns (User) {};
+  rpc RemoveUser (User) returns (google.protobuf.Empty) {};
+  rpc ListUsers (google.protobuf.Empty) returns (Users) {};
 }
 
 message RedirectPath {
