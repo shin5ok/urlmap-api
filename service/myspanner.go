@@ -31,7 +31,7 @@ func New(db string) *spannerConfig {
 	return config
 }
 
-func (s *spannerConfig) Put() error {
+func (s *spannerConfig) Put(*[]string) error {
 	return errors.New("")
 }
 
