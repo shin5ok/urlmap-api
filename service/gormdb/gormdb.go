@@ -1,4 +1,4 @@
-package service
+package gormdb
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ import (
 	_ "gorm.io/gorm/clause"
 )
 
-func sqlConnect(project string, p dbParams) (database *gorm.DB, err error) {
+func SqlConnect(project string, p DbParams) (database *gorm.DB, err error) {
 
 	PROTOCOL := fmt.Sprintf("tcp(%s:3306)", p.dbhost)
 	PARAMS := "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"

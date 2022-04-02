@@ -13,12 +13,6 @@ type spannerConfig struct {
 	client *spanner.Client
 }
 
-type MyDB interface {
-	Put(string) error
-	Get(string) (*[]string, error)
-	List() (*[]string, error)
-}
-
 func New(db string) *spannerConfig {
 	config := &spannerConfig{}
 	config.db = db

@@ -7,6 +7,7 @@ import (
 	"time"
 
 	pb "github.com/shin5ok/urlmap-api/pb"
+	"github.com/shin5ok/urlmap-api/service/gormdb"
 
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"github.com/rs/zerolog"
@@ -16,7 +17,7 @@ import (
 	"gorm.io/gorm/clause"
 )
 
-type dbParams struct {
+type DbParams struct {
 	dbms   string
 	dbuser string
 	dbpass string
@@ -29,7 +30,7 @@ type Redirection struct{}
 var dbConn *gorm.DB
 var Project = os.Getenv("PROJECT")
 
-var v = dbParams{
+var v = DbParams{
 	dbms:   "mysql",
 	dbuser: os.Getenv("DBUSER"),
 	dbpass: os.Getenv("DBPASS"),
@@ -44,13 +45,13 @@ func init() {
 	zerolog.TimeFieldFormat = time.RFC3339Nano
 }
 
-func (v dbParams) makeConn() *gorm.DB {
+func (v DbParams) makeConn() *gorm.DB {
 	if dbConn != nil {
 		log.Info().Msg("using a stored connection")
 		return dbConn
 	}
 	log.Info().Msg("init db connection")
-	db, err := sqlConnect(Project, v)
+	db, err := gormdb.SqlConnect(Project, v)
 	if err != nil {
 		log.Fatal().Err(err)
 	}
@@ -66,7 +67,7 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 	resultSlice := []*pb.RedirectData{}
 
 	// from ./gormdb.go as the same package
-	var results []Redirects
+	var results []gormdb.Redirects
 	// Field name in where args should be actual column name, not struct field
 	status := db.Debug().Where("user = ?", u).Find(&results)
 	if status.Error != nil {
@@ -124,7 +125,7 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 
 func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgUrl, error) {
 	db := v.makeConn()
-	redirect := Redirects{}
+	redirect := gormdb.Redirects{}
 	redirect.RedirectPath = r.Redirect.RedirectPath
 	redirect.User = r.Redirect.User
 	redirect.Org = r.Redirect.Org
@@ -144,7 +145,7 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 
 func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error) {
 	db := v.makeConn()
-	user := Users{Username: r.User, NotifyTo: r.NotifyTo}
+	user := gormdb.Users{Username: r.User, NotifyTo: r.NotifyTo}
 	db.Debug().Clauses(clause.OnConflict{
 		Columns:   []clause.Column{{Name: "username"}},
 		DoUpdates: clause.Assignments(map[string]interface{}{"username": r.User, "notify_to": r.NotifyTo}),
@@ -154,7 +155,7 @@ func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error)
 
 func (s *Redirection) RemoveUser(ctx context.Context, r *pb.User) (*emptypb.Empty, error) {
 	db := v.makeConn()
-	user := Users{}
+	user := gormdb.Users{}
 	db.Debug().
 		Where("UserName = ?", r.User).
 		Delete(&user)
