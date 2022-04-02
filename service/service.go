@@ -7,7 +7,6 @@ import (
 	"time"
 
 	pb "github.com/shin5ok/urlmap-api/pb"
-	"github.com/shin5ok/urlmap-api/service/gormdb"
 
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"github.com/rs/zerolog"
@@ -51,7 +50,7 @@ func (v DbParams) makeConn() *gorm.DB {
 		return dbConn
 	}
 	log.Info().Msg("init db connection")
-	db, err := gormdb.SqlConnect(Project, v)
+	db, err := SqlConnect(Project, v)
 	if err != nil {
 		log.Fatal().Err(err)
 	}
@@ -67,7 +66,7 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 	resultSlice := []*pb.RedirectData{}
 
 	// from ./gormdb.go as the same package
-	var results []gormdb.Redirects
+	var results []Redirects
 	// Field name in where args should be actual column name, not struct field
 	status := db.Debug().Where("user = ?", u).Find(&results)
 	if status.Error != nil {
@@ -125,7 +124,7 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 
 func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgUrl, error) {
 	db := v.makeConn()
-	redirect := gormdb.Redirects{}
+	redirect := Redirects{}
 	redirect.RedirectPath = r.Redirect.RedirectPath
 	redirect.User = r.Redirect.User
 	redirect.Org = r.Redirect.Org
@@ -145,7 +144,7 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 
 func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error) {
 	db := v.makeConn()
-	user := gormdb.Users{Username: r.User, NotifyTo: r.NotifyTo}
+	user := Users{Username: r.User, NotifyTo: r.NotifyTo}
 	db.Debug().Clauses(clause.OnConflict{
 		Columns:   []clause.Column{{Name: "username"}},
 		DoUpdates: clause.Assignments(map[string]interface{}{"username": r.User, "notify_to": r.NotifyTo}),
@@ -155,7 +154,7 @@ func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error)
 
 func (s *Redirection) RemoveUser(ctx context.Context, r *pb.User) (*emptypb.Empty, error) {
 	db := v.makeConn()
-	user := gormdb.Users{}
+	user := Users{}
 	db.Debug().
 		Where("UserName = ?", r.User).
 		Delete(&user)
