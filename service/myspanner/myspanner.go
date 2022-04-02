@@ -1,4 +1,4 @@
-package service
+package myspanner
 
 import (
 	"context"
@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	"cloud.google.com/go/spanner"
+	_ "github.com/shin5ok/urlmap-api/service"
 )
 
 type spannerConfig struct {
