@@ -1,7 +1,7 @@
 package service
 
 type MyDB interface {
-	Put(string) error
-	Get(string) (*[]string, error)
+	Put(params *[]string) error
+	Get(query string) (*[]string, error)
 	List() (*[]string, error)
 }

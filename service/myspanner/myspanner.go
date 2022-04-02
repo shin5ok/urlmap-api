@@ -6,15 +6,17 @@ import (
 	"fmt"
 
 	"cloud.google.com/go/spanner"
-	_ "github.com/shin5ok/urlmap-api/service"
+	"github.com/shin5ok/urlmap-api/service"
 )
+
+type myDB service.MyDB
 
 type spannerConfig struct {
 	db     string
 	client *spanner.Client
 }
 
-func New(db string) *spannerConfig {
+func New(db string) myDB {
 	config := &spannerConfig{}
 	config.db = db
 	ctx := context.Background()
@@ -26,11 +28,11 @@ func New(db string) *spannerConfig {
 	return config
 }
 
-func (s *spannerConfig) Put(*[]string) error {
+func (s *spannerConfig) Put(params *[]string) error {
 	return errors.New("")
 }
 
-func (s *spannerConfig) Get() (*[]string, error) {
+func (s *spannerConfig) Get(query string) (*[]string, error) {
 	return &[]string{}, errors.New("")
 }
 
