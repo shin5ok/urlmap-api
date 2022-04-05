@@ -25,17 +25,17 @@ spec:
           valueFrom:
             secretKeyRef:
               key: DBUSER
-              name: secret-to-be-created
+              name: secret-params
         - name: SLACK_URL
           valueFrom:
             secretKeyRef:
               key: SLACK_URL
-              name: secret-to-be-created
+              name: secret-params
         - name: APPVER
           valueFrom:
             secretKeyRef:
               key: APPVER
-              name: secret-to-be-created
+              name: secret-params
         resources: {}
         volumeMounts:
         - name: foo
@@ -44,6 +44,6 @@ spec:
       volumes:
       - name: foo
         secret:
-          secretName: secret-to-be-created
+          secretName: secret-params
           optional: false # default setting; "mysecret" must exist
 status: {}
