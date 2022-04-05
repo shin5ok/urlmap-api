@@ -26,10 +26,10 @@ spec:
             secretKeyRef:
               key: DBUSER
               name: secret-params
-        - name: SLACK_URL
+        - name: DBNAME
           valueFrom:
             secretKeyRef:
-              key: SLACK_URL
+              key: DBNAME
               name: secret-params
         - name: APPVER
           valueFrom:
