@@ -29,7 +29,6 @@ func New(db string) myDB {
 	}
 	defer client.Close()
 	config.client = client
-	config.ctx = ctx
 	return config
 }
 
