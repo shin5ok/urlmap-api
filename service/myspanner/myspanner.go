@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	"cloud.google.com/go/spanner"
+	"github.com/rs/zerolog/log"
 	"github.com/shin5ok/urlmap-api/service"
 	"google.golang.org/api/iterator"
 )
@@ -63,6 +64,7 @@ func (s *spannerConfig) Get(query string) ([]string, error) {
 	for {
 		row, err := iter.Next()
 		if err == iterator.Done {
+			log.Info().Msgf("%+v", results)
 			return results, nil
 		}
 		if err != nil {
