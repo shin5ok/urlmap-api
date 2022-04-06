@@ -27,6 +27,7 @@ func New(db string) myDB {
 	if err != nil {
 		panic(fmt.Sprintf("cannot create a spanner client: %v", err))
 	}
+	defer client.Close()
 	config.client = client
 	config.ctx = ctx
 	return config
