@@ -28,7 +28,7 @@ import (
 )
 
 var port string = os.Getenv("PORT")
-var version string = "2022011600"
+var version string = "2022061000"
 var appPort string = "8080"
 var promPort string = "9080"
 
