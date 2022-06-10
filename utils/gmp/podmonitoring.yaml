@@ -1,7 +1,7 @@
 apiVersion: monitoring.googleapis.com/v1
 kind: PodMonitoring
 metadata:
-  name: urlmap-api
+  name: urlmap-api-monitor
   namespace: urlmap
 spec:
   selector:
