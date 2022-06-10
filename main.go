@@ -30,7 +30,7 @@ import (
 var port string = os.Getenv("PORT")
 var version string = "2022061000"
 var appPort string = "8080"
-var promPort string = "9080"
+var promPort string = "18080"
 
 type healthCheck struct{}
 
