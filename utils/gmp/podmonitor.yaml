@@ -1,0 +1,12 @@
+apiVersion: monitoring.googleapis.com/v1
+kind: PodMonitoring
+metadata:
+  name: urlmap-api
+  namespace: urlmap
+spec:
+  selector:
+    matchLabels:
+      app: urlmap-api
+  endpoints:
+  - port: metrics
+    interval: 30s
