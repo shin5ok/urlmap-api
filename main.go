@@ -4,15 +4,18 @@ import (
 	"context"
 	"fmt"
 	"net"
+	"net/http"
 	"os"
 	"time"
 
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	pb "github.com/shin5ok/urlmap-api/pb"
 
 	"github.com/shin5ok/urlmap-api/service"
 
 	_ "time/tzdata"
 
+	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/pereslava/grpc_zerolog"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -54,6 +57,8 @@ func main() {
 			grpc_zerolog.NewPayloadStreamServerInterceptor(serverLogger),
 			grpc_zerolog.NewStreamServerInterceptor(serverLogger),
 		),
+		grpc.StreamInterceptor(grpc_prometheus.StreamServerInterceptor),
+		grpc.UnaryInterceptor(grpc_prometheus.UnaryServerInterceptor),
 	)
 
 	serverLogger.Info().Msgf("Version of %s is Starting...\n", version)
@@ -75,6 +80,10 @@ func main() {
 	reflection.Register(server)
 	serverLogger.Info().Msgf("Listening on %s\n", port)
 	server.Serve(listenPort)
+
+	grpc_prometheus.Register(server)
+	http.Handle("/metrics", promhttp.Handler())
+
 }
 
 func (h *healthCheck) Check(context.Context, *health.HealthCheckRequest) (*health.HealthCheckResponse, error) {
