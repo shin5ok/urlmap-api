@@ -52,13 +52,13 @@ func main() {
 		grpc.ChainUnaryInterceptor(
 			grpc_zerolog.NewPayloadUnaryServerInterceptor(serverLogger),
 			grpc_zerolog.NewPayloadUnaryServerInterceptor(serverLogger),
+			grpc_prometheus.UnaryServerInterceptor,
 		),
 		grpc.ChainStreamInterceptor(
 			grpc_zerolog.NewPayloadStreamServerInterceptor(serverLogger),
 			grpc_zerolog.NewStreamServerInterceptor(serverLogger),
+			grpc_prometheus.StreamServerInterceptor,
 		),
-		grpc.StreamInterceptor(grpc_prometheus.StreamServerInterceptor),
-		grpc.UnaryInterceptor(grpc_prometheus.UnaryServerInterceptor),
 	)
 
 	serverLogger.Info().Msgf("Version of %s is Starting...\n", version)
@@ -77,12 +77,19 @@ func main() {
 	var h = &healthCheck{}
 	health.RegisterHealthServer(server, h)
 
+	grpc_prometheus.EnableHandlingTimeHistogram()
+	grpc_prometheus.Register(server)
+	http.Handle("/metrics", promhttp.Handler())
+	go func() {
+		if err := http.ListenAndServe(":8081", nil); err != nil {
+			panic(err)
+		}
+		fmt.Println("listening on :8081")
+	}()
+
 	reflection.Register(server)
 	serverLogger.Info().Msgf("Listening on %s\n", port)
 	server.Serve(listenPort)
-
-	grpc_prometheus.Register(server)
-	http.Handle("/metrics", promhttp.Handler())
 
 }
 
