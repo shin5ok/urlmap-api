@@ -29,6 +29,8 @@ import (
 
 var port string = os.Getenv("PORT")
 var version string = "2022011600"
+var appPort string = "8080"
+var promPort string = "9080"
 
 type healthCheck struct{}
 
@@ -63,7 +65,7 @@ func main() {
 
 	serverLogger.Info().Msgf("Version of %s is Starting...\n", version)
 	if port == "" {
-		port = "8080"
+		port = appPort
 	}
 	listenPort, err := net.Listen("tcp", fmt.Sprintf(":%v", port))
 	if err != nil {
@@ -81,10 +83,10 @@ func main() {
 	grpc_prometheus.Register(server)
 	http.Handle("/metrics", promhttp.Handler())
 	go func() {
-		if err := http.ListenAndServe(":8081", nil); err != nil {
+		if err := http.ListenAndServe(":"+promPort, nil); err != nil {
 			panic(err)
 		}
-		fmt.Println("listening on :8081")
+		serverLogger.Info().Msgf("prometheus listening on :%s\n", promPort)
 	}()
 
 	reflection.Register(server)
