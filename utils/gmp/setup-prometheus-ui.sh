@@ -1,0 +1,1 @@
+cat frontend.yaml | envsubst | kubectl apply -n urlmap -f -

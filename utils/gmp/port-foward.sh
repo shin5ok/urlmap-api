@@ -1,0 +1,1 @@
+kubectl -n urlmap port-forward svc/frontend 9090
