@@ -2,4 +2,4 @@ grpcurl -plaintext -d '{"path": "foo"}' 127.0.0.1:8080 urlmap.Redirection.GetOrg
 grpcurl -plaintext -d '{"user": "tako", "notify_to":"slack"}' 127.0.0.1:8080 urlmap.Redirection.SetUser
 grpcurl -plaintext -d '{"user": "tako"}' 127.0.0.1:8080 urlmap.Redirection.GetInfoByUser
 grpcurl -plaintext -d '' 127.0.0.1:8080 urlmap.Redirection.ListUsers
-grpcurl -plaintext -d {"name":"tako","mode":"ping"} localhost:8080 urlmap.Redirection.PingPongMessage
+grpcurl -plaintext -d '{"name":"tako","mode":"ping"}' localhost:8080 urlmap.Redirection.PingPongMessage
