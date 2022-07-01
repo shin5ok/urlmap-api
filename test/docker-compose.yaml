@@ -2,7 +2,7 @@ version: '3'
 
 services:
   testmysql:
-    image: mysql:5.7
+    image: mariadb:10.8.3
     environment:
       PROJECT: ${PROJECT_ID}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
