@@ -1,7 +1,7 @@
 all: go python
 
 go:
-	protoc -Iproto --go_out=plugins=grpc:./pb proto/*.proto
+	protoc -Iproto --go_out=./pb --go_opt=paths=source_relative --go-grpc_out=./pb --go-grpc_opt=paths=source_relative --go-grpc_opt=require_unimplemented_servers=false proto/urlmap.proto
 
 python:
 	pip install -r requirements.txt
