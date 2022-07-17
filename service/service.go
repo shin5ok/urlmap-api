@@ -17,25 +17,19 @@ import (
 )
 
 type DbParams struct {
-	dbms   string
-	dbuser string
-	dbpass string
-	dbname string
-	dbhost string
+	Dbms   string
+	Dbuser string
+	Dbpass string
+	Dbname string
+	Dbhost string
 }
 
-type Redirection struct{}
+type Redirection struct {
+	DbParams
+}
 
 var dbConn *gorm.DB
 var Project = os.Getenv("PROJECT")
-
-var v = DbParams{
-	dbms:   "mysql",
-	dbuser: os.Getenv("DBUSER"),
-	dbpass: os.Getenv("DBPASS"),
-	dbname: os.Getenv("DBNAME"),
-	dbhost: os.Getenv("DBHOST"),
-}
 
 func init() {
 	log.Logger = zerolog.New(os.Stderr).With().Timestamp().Logger()
@@ -44,13 +38,17 @@ func init() {
 	zerolog.TimeFieldFormat = time.RFC3339Nano
 }
 
-func (v DbParams) makeConn() *gorm.DB {
+func New(dbParams DbParams) Redirection {
+	return Redirection{dbParams}
+}
+
+func (s *Redirection) makeConn() *gorm.DB {
 	if dbConn != nil {
 		log.Info().Msg("using a stored connection")
 		return dbConn
 	}
 	log.Info().Msg("init db connection")
-	db, err := SqlConnect(Project, v)
+	db, err := SqlConnect(Project, s.DbParams)
 	if err != nil {
 		log.Fatal().Err(err)
 	}
@@ -60,7 +58,7 @@ func (v DbParams) makeConn() *gorm.DB {
 
 func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.ArrayRedirectData, error) {
 	u := user.User
-	db := v.makeConn()
+	db := s.makeConn()
 
 	pbResults := &pb.ArrayRedirectData{}
 	resultSlice := []*pb.RedirectData{}
@@ -100,7 +98,7 @@ func (s *Redirection) GetInfoByUser(ctx context.Context, user *pb.User) (*pb.Arr
 
 func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (*pb.OrgUrl, error) {
 	p := path.Path
-	db := v.makeConn()
+	db := s.makeConn()
 
 	var result pb.OrgUrl
 	// Field name in where args should be actual column name, not struct field
@@ -123,7 +121,7 @@ func (s *Redirection) GetOrgByPath(ctx context.Context, path *pb.RedirectPath) (
 }
 
 func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgUrl, error) {
-	db := v.makeConn()
+	db := s.makeConn()
 	redirect := Redirects{}
 	redirect.RedirectPath = r.Redirect.RedirectPath
 	redirect.User = r.Redirect.User
@@ -143,7 +141,7 @@ func (s *Redirection) SetInfo(ctx context.Context, r *pb.RedirectData) (*pb.OrgU
 }
 
 func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error) {
-	db := v.makeConn()
+	db := s.makeConn()
 	user := Users{Username: r.User, NotifyTo: r.NotifyTo}
 	db.Debug().Clauses(clause.OnConflict{
 		Columns:   []clause.Column{{Name: "username"}},
@@ -153,7 +151,7 @@ func (s *Redirection) SetUser(ctx context.Context, r *pb.User) (*pb.User, error)
 }
 
 func (s *Redirection) RemoveUser(ctx context.Context, r *pb.User) (*emptypb.Empty, error) {
-	db := v.makeConn()
+	db := s.makeConn()
 	user := Users{}
 	db.Debug().
 		Where("UserName = ?", r.User).
@@ -164,7 +162,7 @@ func (s *Redirection) RemoveUser(ctx context.Context, r *pb.User) (*emptypb.Empt
 func (s *Redirection) ListUsers(ctx context.Context, empty *emptypb.Empty) (*pb.Users, error) {
 	var userlist []*pb.User
 	users := &pb.Users{}
-	db := v.makeConn()
+	db := s.makeConn()
 	status := db.Table("users").
 		Debug().
 		// userlist has 'User' but table has 'username', so need to use 'as' SQL sentence
