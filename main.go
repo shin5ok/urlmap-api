@@ -31,6 +31,7 @@ var port string = os.Getenv("PORT")
 var version string = "2022061000"
 var appPort string = "8080"
 var promPort string = "18080"
+var dbParams service.DbParams
 
 type healthCheck struct{}
 
@@ -42,6 +43,10 @@ func init() {
 
 	shoutouthostnamegcp.SetSigHandler(os.Getenv("SLACK_URL"), os.Getenv("SLACK_CHANNEL"))
 
+	dbParams.Dbuser = os.Getenv("DBUSER")
+	dbParams.Dbpass = os.Getenv("DBPASS")
+	dbParams.Dbname = os.Getenv("DBNAME")
+	dbParams.Dbhost = os.Getenv("DBHOST")
 }
 
 func main() {
@@ -71,9 +76,9 @@ func main() {
 		serverLogger.Fatal().Msg(err.Error())
 	}
 
-	service := &service.Redirection{}
+	service := service.New(dbParams)
 	// service name is 'Redirection' that was defined in pb
-	pb.RegisterRedirectionServer(server, service)
+	pb.RegisterRedirectionServer(server, &service)
 
 	var h = &healthCheck{}
 	health.RegisterHealthServer(server, h)
