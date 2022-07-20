@@ -22,6 +22,7 @@ require (
 require (
 	cloud.google.com/go v0.100.2 // indirect
 	cloud.google.com/go/compute v1.5.0 // indirect
+	github.com/DATA-DOG/go-sqlmock v1.5.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/census-instrumentation/opencensus-proto v0.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
