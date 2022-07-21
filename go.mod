@@ -5,13 +5,16 @@ go 1.17
 require (
 	cloud.google.com/go/spanner v1.29.0
 	github.com/go-sql-driver/mysql v1.6.0
+	github.com/golang/mock v1.6.0
 	github.com/golang/protobuf v1.5.2
 	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
 	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0
 	github.com/pereslava/grpc_zerolog v0.0.3
+	github.com/prometheus/client_golang v1.12.2
 	github.com/rs/zerolog v1.26.1
 	github.com/shin5ok/shoutouthostnamegcp v0.0.0-20220305153839-e6eac6bb4b80
+	github.com/spf13/cobra v1.5.0
 	google.golang.org/api v0.70.0
 	google.golang.org/grpc v1.44.0
 	google.golang.org/protobuf v1.27.1
@@ -22,7 +25,6 @@ require (
 require (
 	cloud.google.com/go v0.100.2 // indirect
 	cloud.google.com/go/compute v1.5.0 // indirect
-	github.com/DATA-DOG/go-sqlmock v1.5.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/census-instrumentation/opencensus-proto v0.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
@@ -37,11 +39,9 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.4 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
-	github.com/prometheus/client_golang v1.12.2 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.32.1 // indirect
 	github.com/prometheus/procfs v0.7.3 // indirect
-	github.com/spf13/cobra v1.5.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
