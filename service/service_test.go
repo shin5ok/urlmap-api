@@ -5,7 +5,6 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
-	// gomock "github.com/golang/mock/gomock"
 	mock_urlmap "github.com/shin5ok/urlmap-api/mock_urlmap"
 	pb "github.com/shin5ok/urlmap-api/pb"
 )
@@ -64,4 +63,30 @@ func testRedirection_GetInfoByUser(t *testing.T, client *mock_urlmap.MockRedirec
 		t.Error(err)
 	}
 	t.Log(resp.GetRedirects())
+}
+
+func TestRedirection_PingPongMessage(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+	mockClient := mock_urlmap.NewMockRedirectionClient(ctrl)
+
+	ctx := context.Background()
+
+	mockClient.EXPECT().
+		PingPongMessage(
+			ctx,
+			&pb.Message{Name: "foo"},
+		).
+		Return(&pb.Message{Name: "pong"}, nil)
+
+	func(t *testing.T, client *mock_urlmap.MockRedirectionClient) {
+		ctx := context.Background()
+		message := &pb.Message{Name: "foo"}
+		resp, err := client.PingPongMessage(ctx, message)
+		if err != nil {
+			t.Error(err)
+		}
+		t.Log(resp.GetName())
+	}(t, mockClient)
+
 }
