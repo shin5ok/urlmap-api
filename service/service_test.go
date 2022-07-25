@@ -72,12 +72,13 @@ func TestRedirection_PingPongMessage(t *testing.T) {
 
 	ctx := context.Background()
 
+	name := "foo"
 	mockClient.EXPECT().
 		PingPongMessage(
 			ctx,
-			&pb.Message{Name: "foo"},
+			&pb.Message{Name: name},
 		).
-		Return(&pb.Message{Name: "pong"}, nil)
+		Return(&pb.Message{Name: name, ShowModeOneof: &pb.Message_Mode{"pong"}}, nil)
 
 	func(t *testing.T, client *mock_urlmap.MockRedirectionClient) {
 		ctx := context.Background()
