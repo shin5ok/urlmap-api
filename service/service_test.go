@@ -47,6 +47,7 @@ func TestRedirection_GetOrgPath(t *testing.T) {
 
 }
 func testRedirection_GetOrgPath(t *testing.T, client *mock_urlmap.MockRedirectionClient) {
+	t.Helper()
 	ctx := context.Background()
 	resp, err := client.GetOrgByPath(ctx, &pb.RedirectPath{})
 	if err != nil {
@@ -56,6 +57,7 @@ func testRedirection_GetOrgPath(t *testing.T, client *mock_urlmap.MockRedirectio
 }
 
 func testRedirection_GetInfoByUser(t *testing.T, client *mock_urlmap.MockRedirectionClient) {
+	t.Helper()
 	ctx := context.Background()
 	user := &pb.User{User: "tako", SlackUrl: "test", NotifyTo: "slack"}
 	resp, err := client.GetInfoByUser(ctx, user)
@@ -81,6 +83,7 @@ func TestRedirection_PingPongMessage(t *testing.T) {
 		Return(&pb.Message{Name: name, ShowModeOneof: &pb.Message_Mode{"pong"}}, nil)
 
 	func(t *testing.T, client *mock_urlmap.MockRedirectionClient) {
+		t.Helper()
 		ctx := context.Background()
 		message := &pb.Message{Name: "foo"}
 		resp, err := client.PingPongMessage(ctx, message)
