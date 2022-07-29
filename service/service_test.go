@@ -37,7 +37,7 @@ func TestRedirection_GetOrgPath(t *testing.T) {
 	ctx := context.Background()
 
 	path := &pb.RedirectPath{}
-	org := &pb.OrgUrl{}
+	org := &pb.OrgUrl{Org: "https://www.google.com/", Email: "user0@example.com"}
 	mockClient.EXPECT().GetOrgByPath(
 		ctx,
 		path,
@@ -52,6 +52,12 @@ func testRedirection_GetOrgPath(t *testing.T, client *mock_urlmap.MockRedirectio
 	resp, err := client.GetOrgByPath(ctx, &pb.RedirectPath{})
 	if err != nil {
 		t.Error(err)
+	}
+	if resp.Org != "https://www.google.com/" {
+		t.Error("Org looks like not match")
+	}
+	if resp.Email != "user@exmaple.com" {
+		t.Error("Email looks like not match")
 	}
 	t.Log(resp.GetOrg())
 }
