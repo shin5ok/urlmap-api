@@ -180,6 +180,6 @@ func (s *Redirection) ListUsers(ctx context.Context, empty *emptypb.Empty) (*pb.
 }
 
 func (s *Redirection) PingPongMessage(ctx context.Context, message *pb.Message) (*pb.Message, error) {
-	message.ShowModeOneof = &pb.Message_Mode{"pong"}
+	message.ShowModeOneof = &pb.Message_Mode{Mode: "pong"}
 	return message, nil
 }

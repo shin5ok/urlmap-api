@@ -54,11 +54,11 @@ func testRedirection_GetOrgPath(t *testing.T, client *mock_urlmap.MockRedirectio
 	if err != nil {
 		t.Error(err)
 	}
-	if resp.Org != "https://www.google.com/" {
-		t.Error("Org looks like not match")
+	if resp.GetOrg() != "https://www.google.com/" {
+		t.Errorf("Org looks like not match %v", resp.GetOrg())
 	}
-	if resp.Email != "user@exmaple.com" {
-		t.Error("Email looks like not match")
+	if resp.GetEmail() != "user0@example.com" {
+		t.Errorf("Email looks like not match %v", resp.GetEmail())
 	}
 	t.Log(resp.GetOrg())
 }
@@ -87,7 +87,7 @@ func TestRedirection_PingPongMessage(t *testing.T) {
 			ctx,
 			&pb.Message{Name: name},
 		).
-		Return(&pb.Message{Name: name, ShowModeOneof: &pb.Message_Mode{"pong"}}, nil)
+		Return(&pb.Message{Name: name, ShowModeOneof: &pb.Message_Mode{Mode: "pong"}}, nil)
 
 	func(t *testing.T, client *mock_urlmap.MockRedirectionClient) {
 		t.Helper()
@@ -139,7 +139,7 @@ func TestRedirection_SetInfo(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := mockClient.SetInfo(tt.args.ctx, tt.args.r)
-			t.Log(tt.args.r)
+			// t.Log(tt.args.r)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Redirection.SetInfo() error = %v, wantErr %v", err, tt.wantErr)
 				return
