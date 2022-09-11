@@ -42,6 +42,10 @@ func New(dbParams DbParams) Redirection {
 	return Redirection{dbParams}
 }
 
+type DBOperator interface {
+	makeConn() *gorm.DB
+}
+
 func (s *Redirection) makeConn() *gorm.DB {
 	if dbConn != nil {
 		log.Info().Msg("using a stored connection")
