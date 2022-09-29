@@ -13,10 +13,10 @@ import (
 
 func SqlConnect(project string, p DbParams) (database *gorm.DB, err error) {
 
-	PROTOCOL := fmt.Sprintf("tcp(%s:3306)", p.Dbhost)
-	PARAMS := "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
-	CONNECT := p.Dbuser + ":" + p.Dbpass + "@" + PROTOCOL + "/" + p.Dbname + PARAMS
-	return gorm.Open(mysql.Open(CONNECT), &gorm.Config{})
+	protocol := fmt.Sprintf("tcp(%s:3306)", p.Dbhost)
+	params := "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
+	connect := p.Dbuser + ":" + p.Dbpass + "@" + protocol + "/" + p.Dbname + params
+	return gorm.Open(mysql.Open(connect), &gorm.Config{})
 }
 
 type Redirects struct {
