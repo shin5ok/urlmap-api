@@ -90,11 +90,11 @@ func main() {
 		if err := http.ListenAndServe(":"+promPort, nil); err != nil {
 			panic(err)
 		}
-		serverLogger.Info().Msgf("prometheus listening on :%s\n", promPort)
+		serverLogger.Info().Msgf("Prometheus exporter listening on :%s\n", promPort)
 	}()
 
 	reflection.Register(server)
-	serverLogger.Info().Msgf("Listening on %s\n", port)
+	serverLogger.Info().Msgf("gGRPC server listening on :%s\n", port)
 	server.Serve(listenPort)
 
 }
