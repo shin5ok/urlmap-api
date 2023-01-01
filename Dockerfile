@@ -8,8 +8,7 @@ COPY pb/ ./pb/
 COPY main.go ./
 RUN CGO_ENABLED=0 GOOS=linux go build -o /go/bin/main
 
-FROM golang:1.16 as runner
-# FROM scratch as main
+FROM debian:buster-slim AS runner
 ENV TZ Asia/Tokyo
 COPY --from=builder /go/bin/main /main
 USER nobody
