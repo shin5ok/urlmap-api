@@ -30,6 +30,22 @@ func TestRedirection_GetInfoByUser(t *testing.T) {
 
 }
 
+func testRedirection_GetOrgPath(t *testing.T, client *mock_urlmap.MockRedirectionClient) {
+	t.Helper()
+	ctx := context.Background()
+	resp, err := client.GetOrgByPath(ctx, &pb.RedirectPath{})
+	if err != nil {
+		t.Error(err)
+	}
+	if resp.GetOrg() != "https://www.google.com/" {
+		t.Errorf("Org looks like not match %v", resp.GetOrg())
+	}
+	if resp.GetEmail() != "user0@example.com" {
+		t.Errorf("Email looks like not match %v", resp.GetEmail())
+	}
+	t.Log(resp.GetOrg())
+}
+
 func TestRedirection_GetOrgPath(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
@@ -46,21 +62,6 @@ func TestRedirection_GetOrgPath(t *testing.T) {
 
 	testRedirection_GetOrgPath(t, mockClient)
 
-}
-func testRedirection_GetOrgPath(t *testing.T, client *mock_urlmap.MockRedirectionClient) {
-	t.Helper()
-	ctx := context.Background()
-	resp, err := client.GetOrgByPath(ctx, &pb.RedirectPath{})
-	if err != nil {
-		t.Error(err)
-	}
-	if resp.GetOrg() != "https://www.google.com/" {
-		t.Errorf("Org looks like not match %v", resp.GetOrg())
-	}
-	if resp.GetEmail() != "user0@example.com" {
-		t.Errorf("Email looks like not match %v", resp.GetEmail())
-	}
-	t.Log(resp.GetOrg())
 }
 
 func testRedirection_GetInfoByUser(t *testing.T, client *mock_urlmap.MockRedirectionClient) {
