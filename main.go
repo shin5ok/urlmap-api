@@ -10,6 +10,8 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	pb "github.com/shin5ok/urlmap-api/pb"
+	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
+	"go.opentelemetry.io/otel"
 
 	"github.com/shin5ok/urlmap-api/service"
 
@@ -31,6 +33,7 @@ var port string = os.Getenv("PORT")
 var version string = "2022061000"
 var appPort string = "8080"
 var promPort string = "18080"
+var projectID string
 var dbParams service.DbParams
 
 type healthCheck struct{}
@@ -47,6 +50,8 @@ func init() {
 	dbParams.Dbpass = os.Getenv("DBPASS")
 	dbParams.Dbname = os.Getenv("DBNAME")
 	dbParams.Dbhost = os.Getenv("DBHOST")
+
+	projectID = os.Getenv("GOOGLE_CLOUD_PROJECT")
 }
 
 func main() {
@@ -55,15 +60,24 @@ func main() {
 	serverLogger := log.Level(zerolog.TraceLevel)
 	grpc_zerolog.ReplaceGrpcLogger(zerolog.New(os.Stderr).Level(zerolog.ErrorLevel))
 
+	tp := tpExporter(projectID, "urlmap-api")
+	ctx := context.Background()
+	defer tp.ForceFlush(ctx)
+	otel.SetTracerProvider(tp)
+
+	interceptorOpt := otelgrpc.WithTracerProvider(otel.GetTracerProvider())
+
 	server := grpc.NewServer(
 		grpc.ChainUnaryInterceptor(
 			grpc_zerolog.NewPayloadUnaryServerInterceptor(serverLogger),
 			grpc_prometheus.UnaryServerInterceptor,
+			otelgrpc.UnaryServerInterceptor(interceptorOpt),
 		),
 		grpc.ChainStreamInterceptor(
 			grpc_zerolog.NewPayloadStreamServerInterceptor(serverLogger),
 			grpc_zerolog.NewStreamServerInterceptor(serverLogger),
 			grpc_prometheus.StreamServerInterceptor,
+			otelgrpc.StreamServerInterceptor(interceptorOpt),
 		),
 	)
 
