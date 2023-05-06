@@ -28,8 +28,10 @@ type Redirection struct {
 	DbParams
 }
 
-var dbConn *gorm.DB
-var Project = os.Getenv("PROJECT")
+var (
+	dbConn  *gorm.DB
+	Project = os.Getenv("PROJECT")
+)
 
 func init() {
 	log.Logger = zerolog.New(os.Stderr).With().Timestamp().Logger()

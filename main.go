@@ -29,12 +29,14 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-var port string = os.Getenv("PORT")
-var version string = "2022061000"
-var appPort string = "8080"
-var promPort string = "18080"
-var projectID string
-var dbParams service.DbParams
+var (
+	port      string = os.Getenv("PORT")
+	version   string = "2022061000"
+	appPort   string = "8080"
+	promPort  string = "18080"
+	projectID string
+	dbParams  service.DbParams
+)
 
 type healthCheck struct{}
 
