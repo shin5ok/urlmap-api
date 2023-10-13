@@ -1,4 +1,4 @@
-FROM golang:1.16 as builder
+FROM golang:1.20 as builder
 ENV ROOT /go/src/urlmap-api
 WORKDIR ${ROOT}
 COPY go.mod go.sum ./
